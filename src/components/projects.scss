@@ -1,0 +1,109 @@
+@import 'util';
+
+.projects-container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.project-card {
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid rgba($color: #000000, $alpha: 0.1);
+    box-shadow: 0px 2px 2px rgba($color: #000000, $alpha: 0.2);
+    transition: all ease-in-out 0.3s;
+    display: flex;
+    flex-direction: row;
+    color: darkslategrey;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 16px;
+    }
+}
+
+.project-left {
+    text-transform: none;
+    flex: 1 1 250px;
+    text-align: left;
+    .project-title-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .project-title {
+        margin: 20px 5px 10px 5px;
+        font-size: 25px;
+        font-weight: 700;
+        border-bottom: 4px solid var(--accent-color);
+    }
+    .project-description {
+        padding-left: 5px;
+    }
+}
+
+.project-right {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    .year {
+        align-self: left;
+        text-align: left;
+        color: white;
+        padding-left: 10px;
+        padding-top: 3px;
+        background-color: var(--accent-color);
+        clip-path: polygon(0% 0%, 70px 0%, 50px 30px, 0% 30px);
+    }
+    .links {
+        font-size: 27px;
+        padding-bottom: 7px;
+        padding-right: 10px;
+        text-align: right;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        a {
+            color: var(--accent-color);
+            margin-left: 5px;
+        }
+    }
+
+    .link-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .link-container:hover .link-tag {
+        opacity: 1;
+    }
+    .link-tag {
+        position: absolute;
+        margin-top: 30px;
+        margin-left: -20px;
+        opacity: 0;
+        background-color: #282828;
+        border-radius: 5px;
+        padding: 1px 5px;
+        color: #fcfcfc;
+        font-size: 15px;
+        white-space: nowrap;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: none;
+        transition: all 0.25s ease-in-out;
+        @include select(none);
+    }
+    .shake {
+        animation: shake 1s;
+    }
+}
+
+@keyframes shake {
+    0% {transform: translateX(0) rotate(0deg);}
+    25% {transform: translateX(-5px) rotate(-7deg);}
+    75% {transform: translateX(5px) rotate(7deg);}
+    100% {transform: translateX(0) rotate(0deg);}
+}
