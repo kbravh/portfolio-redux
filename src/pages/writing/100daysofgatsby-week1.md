@@ -1,5 +1,5 @@
 ---
-title: Beginning 100 Days of Gatsby
+title: Beginning 100 Days of Gatsby - Week 1
 date: 2019-01-03
 ---
 
