@@ -8,7 +8,7 @@ These errors are handled differently in async and non-async functions. We will g
 
 We can prepare two test events in the Lambda console to trigger errors and successful runs. Create a new lambda function using Node.js 12. You can leave the default execution role. Once the function is created, you will see options at the top right of the page. Choose to configure test events.
 
-![lambda-configure-tests.png](lambda-configure-tests.png)
+![Lambda Test Configuration](lambda-configure-tests.png)
 
 Create two test events using the code snippets below.
 
@@ -97,25 +97,25 @@ exports.handler = (event, context, callback) => {
 
 Now that we have our errors propagating correctly from our Lambda functions, we can catch those errors and map them to HTTP responses. First, create a new REST API. We can leave default settings and add a name and description. Next, we'll add a POST method to it by choosing Add Method from the Actions menu, then choosing POST.
 
-![add-method.png](add-method.png)
+![Add Method to Endpoint](add-method.png)
 
 Once we click the check mark, we'll see a setup screen. We can choose any of our Lambda functions for the integration (leave Lambda proxy integration unchecked!).
 
-![post-setup.png](post-setup.png)
+![POST Setup page](post-setup.png)
 
 Once the method is created, we'll see a screen that will show us the flow of our method.
 
-![method-execution.png](method-execution.png)
+![Method Execution overview screen](method-execution.png)
 
 First, we'll choose the bottom-left box that says Method Response. Here we can add a response (an HTTP response code) that our method will be able to send back. Add 400 as a response and click the check box to save changes.
 
 Click Method Execution at the top of the screen to return to the previous overview.
 
-![method-response.png](method-response.png)
+![Method Response screen](method-response.png)
 
 We'll now be able to add the actual mapping of the error we throw in the lambda function to the 400 HTTP code we added! Click on the bottom-right box, the Integration Response. When we add an integration response here, we'll be presented with three boxes.
 
-![integration-response.png](integration-response.png)
+![Integration Response screen](integration-response.png)
 
 The first box will be a regular expression to match the error code we throw back. Let's set our regular expression to check for our error "Failure!". We'll need to add a wildcard in front as the error will be inside of a JSON object, and will thus have other characters in front of it. `.*Failure.*`
 
@@ -127,11 +127,11 @@ We can now choose the 400 error code from the dropdown and save our changes.
 
 That's it for the setup! We can now test out our error mapping. On the overview screen, we see the leftmost box marked Test.
 
-![test-box.png](test-box.png)
+![Test button on overview screen](test-box.png)
 
 On the test page, we are given a box to provide a test body. We can use the same bodies that we used for the lambda function test cases. Add the failure request body and click Test. Your result will pop up on the right side of the screen.
 
-![test-result.png](test-result.png)
+![400 Code in test result](test-result.png)
 
 Congrats! You've successfully set up error mapping in API Gateway.
 
@@ -162,7 +162,7 @@ If we test this, we see our error coming through! However, it would nice if we c
 
 Let's head back to the integration response page where we set up our regular expression. If we open up our failure mapping, we can see that there is a mapping templates section at the bottom of the page. We'll choose to add a template; type in the default MIME type already shown (`application/json`) and click the checkbox.
 
-![mime-type.png](mime-type.png)
+![Mapping Template MIME type](mime-type.png)
 
 Next, we'll add the actual mapping template. There's a ton that you can do with these mapping templates (see the link at the end of the article), but we'll keep it extremely simple in this article. Add the following template:
 
@@ -172,9 +172,9 @@ $input.path('$.errorMessage')
 
 This tells API Gateway to look at the errorMessage key on the incoming input (where our stringified JSON object is) and pull that object out. Save your changes, and you can test again.
 
-![custom-error-result.png](custom-error-result.png)
+![Response with custom error object](custom-error-result.png)
 
-You've got it! Congratulations, you can now pass your custom Lambda errors through API Gateway to the client!
+Congratulations, you've got it! You can now pass your custom Lambda errors through API Gateway to the client!
 
 ---
 
@@ -187,3 +187,7 @@ Want to dig a bit deeper and learn a bit more? Here are some useful links:
 [Create Models and Mapping Templates for Request and Response Mappings | Amazon Web Services](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
 
 [Node.js 4.3.2 Runtime Now Available on Lambda | Amazon Web Services](https://aws.amazon.com/blogs/compute/node-js-4-3-2-runtime-now-available-on-lambda/)
+
+---
+
+Cover photo by [Jebgert on DeviantArt](https://www.deviantart.com/jebgert/art/Lambda-wallpaper-1600x900-376170829)

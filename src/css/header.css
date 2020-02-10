@@ -1,0 +1,8 @@
+nav {
+  height: 70px;
+  background-color: #222222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc((100vw - 700px) / 2);
+}

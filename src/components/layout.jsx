@@ -1,12 +1,17 @@
 import React from 'react'
-import Transition from './transition'
+// import Transition from './transition'
 import Header from './header'
+
+import '../css/layout.css'
 
 const Layout = ({ children, location }) => {
   return (
     <>
       <Header />
-      <Transition location={location}>{children}</Transition>
+      <div className="layout">
+        {/* <Transition location={location}>{children}</Transition> */}
+        {children}
+      </div>
     </>
   )
 }
