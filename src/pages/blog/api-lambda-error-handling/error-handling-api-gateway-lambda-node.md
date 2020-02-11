@@ -123,7 +123,7 @@ We'll now be able to add the actual mapping of the error we throw in the lambda 
 
 ![Integration Response screen](integration-response.png)
 
-The first box will be a regular expression to match the error code we throw back. Let's set our regular expression to check for our error "Failure!". We'll need to add a wildcard in front as the error will be inside of a JSON object, and will thus have other characters in front of it. `.*Failure.*`
+The first box will be a regular expression to match the error code we throw back. Let's set our regular expression to check for our error "Failure!". We'll need to add a wildcard in front as the error will be inside of a JSON object, and will thus have other characters in front of it. `regex~.*Failure.*`
 
 API Gateway won't run these checks against successful responses! If your lambda doesn't throw an error, it will pass through as a 200 response. You can gain a bit more control over this with Lambda Proxy Integration.
 
@@ -145,7 +145,7 @@ Congrats! You've successfully set up error mapping in API Gateway.
 
 What if we want to send back something more than just a string as an error? We might want to send back more information such as a stack trace, a list of multiple errors, or a JSON object. Luckily we can do this without too much more effort!
 
-First, let's edit our Lambda function to send a JSON object instead of just our `Failure!` string by itself (make sure to still return this string somewhere in your response as that's how we're catching the error with our regular expression).
+First, let's edit our Lambda function to send a JSON object instead of just our `regex~Failure!` string by itself (make sure to still return this string somewhere in your response as that's how we're catching the error with our regular expression).
 
 ```js
 exports.handler = (event, context, callback) => {
@@ -166,7 +166,7 @@ exports.handler = (event, context, callback) => {
 
 If we test this, we see our error coming through! However, it would nice if we could send this back in JSON format instead of leaving it as a string. This is very easy to do with a mapping template.
 
-Let's head back to the integration response page where we set up our regular expression. If we open up our failure mapping, we can see that there is a mapping templates section at the bottom of the page. We'll choose to add a template; type in the default MIME type already shown (`application/json`) and click the checkbox.
+Let's head back to the integration response page where we set up our regular expression. If we open up our failure mapping, we can see that there is a mapping templates section at the bottom of the page. We'll choose to add a template; type in the default MIME type already shown (`html~application/json`) and click the checkbox.
 
 ![Mapping Template MIME type](mime-type.png)
 
