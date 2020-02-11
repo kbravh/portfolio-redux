@@ -1,6 +1,7 @@
 ---
 title: Beginning 100 Days of Gatsby - Week 1
 date: 2019-02-10
+slug: error-handling-api-gateway-lambda-node
 ---
 
 # Error Handling in API Gateway with AWS Lambda
