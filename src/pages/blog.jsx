@@ -15,7 +15,7 @@ export default ({ data }) => {
           <div className="blog-card">
             <h2>{node.frontmatter.title}</h2>
             <h4>{node.frontmatter.date}</h4>
-            <p>{node.excerpt}</p>
+            <p>{node.frontmatter.description}</p>
           </div>
         </Link>
       ))}
@@ -34,8 +34,8 @@ export const query = graphql`
             title
             date(formatString: "DD MMMM, YYYY")
             slug
+            description
           }
-          excerpt
         }
       }
     }

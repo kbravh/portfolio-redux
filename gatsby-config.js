@@ -1,4 +1,10 @@
 module.exports = {
+  siteMetadata: {
+    title: `Karey Higuera - A Portfolio`,
+    description: `The online home of Karey Higuera. Developer and member of The Church of Jesus Christ of Latter-Day Saints.`,
+    author: `@kbravh`,
+    siteUrl: `https://kbravh.dev`
+  },
   plugins: [{
       resolve: `gatsby-source-filesystem`,
       options: {
