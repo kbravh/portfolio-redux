@@ -38,7 +38,7 @@ We can now manually trigger successes and failures very easily using our test ev
 
 ## Async Lambda Function Errors
 
-Async functions allow for errors and results to be returned using `throw` and `return`, respectively. The following sample function demonstrates this functionality.
+Async functions allow for errors and results to be returned using `js~throw` and `js~return`, respectively. The following sample function demonstrates this functionality.
 
 ```js
 exports.handler = async event => {
@@ -54,7 +54,7 @@ exports.handler = async event => {
 }
 ```
 
-Alternatively, you can return a Promise from an async function, and the lambda function will automatically handle  `resolve` and `reject` for responses and errors.
+Alternatively, you can return a Promise from an async function, and the lambda function will automatically handle  `js~resolve` and `js~reject` for responses and errors.
 
 ```js
 exports.handler = async event => {
@@ -70,7 +70,7 @@ exports.handler = async event => {
 
 ## Non-Async Lambda Function Errors
 
-Handling responses and errors in non-async functions comes down to `context` and `callback`, two parameters passed in to the handler functions. The original way to return a response or error was using `context.succeed()` and `context.fail()`. This, although still functional, was superseded by `callback()` once AWS added support for Node 4.3.2. These are implemented as follows:
+Handling responses and errors in non-async functions comes down to `js~context` and `js~callback`, two parameters passed in to the handler functions. The original way to return a response or error was using `js~context.succeed()` and `js~context.fail()`. This, although still functional, was superseded by `js~callback()` once AWS added support for Node 4.3.2. These are implemented as follows:
 
 ### Context Method
 

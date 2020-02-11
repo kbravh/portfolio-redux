@@ -27,7 +27,7 @@ module.exports = {
               // (i.e. single backticks) by creating a separator.
               // This separator is a string and will do no white-space
               // stripping.
-              inlineCodeMarker: `±`,
+              inlineCodeMarker: `~`,
               // Customize the prompt used in shell output
               // Values below are default
               prompt: {
