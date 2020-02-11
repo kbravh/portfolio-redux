@@ -3,7 +3,7 @@ title: Error Handling in API Gateway with AWS Lambda
 description: Learn how to set up error codes in API Gateway when working with Lambda functions written in Node.js.
 date: 2019-02-10
 slug: error-handling-api-gateway-lambda-node
-banner: ./lambda-wallpaper.jpg
+banner: ./api_lambda_cover.png
 language: en_US
 ---
 
@@ -194,7 +194,3 @@ Want to dig a bit deeper and learn a bit more? Here are some useful links:
 [Create Models and Mapping Templates for Request and Response Mappings | Amazon Web Services](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
 
 [Node.js 4.3.2 Runtime Now Available on Lambda | Amazon Web Services](https://aws.amazon.com/blogs/compute/node-js-4-3-2-runtime-now-available-on-lambda/)
-
----
-
-Cover photo by [Jebgert on DeviantArt](https://www.deviantart.com/jebgert/art/Lambda-wallpaper-1600x900-376170829)

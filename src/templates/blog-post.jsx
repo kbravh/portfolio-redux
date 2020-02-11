@@ -40,7 +40,7 @@ export const query = graphql`
         language
         banner {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 700) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
