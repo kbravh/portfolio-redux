@@ -1,5 +1,5 @@
 ---
-title: Error Handling in API Gateway with AWS Lambda
+title: Error Handling in API Gateway with AWS Lambda and Node.js
 description: Learn how to set up error codes in API Gateway when working with Lambda functions written in Node.js.
 date: 2019-02-10
 slug: error-handling-api-gateway-lambda-node
