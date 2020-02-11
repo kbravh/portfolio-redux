@@ -7,10 +7,7 @@ import './blog.css'
 export default ({ data }) => {
   return (
     <Layout>
-      <h1>
-        {data.allMarkdownRemark.totalCount}{" "}
-        {data.allMarkdownRemark.totalCount === 1 ? "Post" : "Posts"}
-      </h1>
+      <h1>Blog</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <Link to={`blog/` + node.frontmatter.slug} className="blog-link" key={node.id}>
           <div className="blog-card">
