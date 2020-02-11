@@ -8,4 +8,5 @@ html, body {
   align-items: center;
   width: 100vw;
   max-width: 700px;
+  margin: auto;
 }

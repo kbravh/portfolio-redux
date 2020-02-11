@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Layout from "../components/layout";
 
 import './blog.css'
 
 export default ({ data }) => {
   return (
-    <>
+    <Layout>
       <h1>
         {data.allMarkdownRemark.totalCount}{" "}
         {data.allMarkdownRemark.totalCount === 1 ? "Post" : "Posts"}
@@ -19,7 +20,7 @@ export default ({ data }) => {
           </div>
         </Link>
       ))}
-    </>
+    </Layout>
   )
 }
 
