@@ -1,10 +1,9 @@
 ---
-title: Beginning 100 Days of Gatsby - Week 1
+title: Error Handling in API Gateway with AWS Lambda
 date: 2019-02-10
 slug: error-handling-api-gateway-lambda-node
+banner: ./lambda-wallpaper.jpg
 ---
-
-# Error Handling in API Gateway with AWS Lambda
 
 For a recent project, I set up a lambda function that would hydrate a template using data posted to it through API Gateway. The template name would be specified in the request, which means I needed to send back some errors if anything went wrong, such as the template not being found.
 
