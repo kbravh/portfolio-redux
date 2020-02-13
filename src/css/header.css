@@ -1,8 +1,23 @@
 nav {
   height: 70px;
-  background-color: #222222;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 0 calc((100vw - 700px) / 2);
+  padding: 0px 1.0875rem 1.45rem;
+}
+
+.navlinks a {
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 500px) {
+  nav {
+    padding: 0px 2rem 1.45rem;
+  }
+}
+
+.resume-link {
+  padding: 10px;
+  border: 2px solid var(--brand-dark);
 }
