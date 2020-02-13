@@ -19,7 +19,7 @@ html * {
   padding-top: 0;
 }
 
-@media screen and (min-width: 500) {
+@media screen and (min-width: 500px) {
   .layout {
     padding: 0px 1.0875rem 2rem;
     padding-top: 0;

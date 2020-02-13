@@ -24,7 +24,7 @@ const BlogCard = ({ post }) => {
       <Img fluid={post.frontmatter.banner.childImageSharp.fluid} objectFit="cover" />
       <div className="blog-card-info">
         <h2 className="blog-card-title">{post.frontmatter.title}</h2>
-        <h4>{post.frontmatter.date}</h4>
+        <h4 className="blog-card-date">{post.frontmatter.date}</h4>
         {/* when I add tags, i'll swap the order to date, title, tags */}
       </div>
     </article>

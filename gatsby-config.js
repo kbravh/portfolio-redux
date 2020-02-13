@@ -44,6 +44,20 @@ module.exports = {
               }
             },
           },
+          {
+            resolve: `gatsby-plugin-prefetch-google-fonts`,
+            options: {
+              fonts: [
+                {
+                  family: `Odibee Sans`,
+                },
+                {
+                  family: `Unica One`,
+                  text: ` januryfebmchpilgstovd1234567890,`
+                }
+              ],
+            },
+          },
         ],
       },
     }
