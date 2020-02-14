@@ -61,6 +61,19 @@ module.exports = {
               ],
             },
           },
+          {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+              name: `Karey Higuera Portfolio`,
+              short_name: `kbravh`,
+              start_url: `/`,
+              background_color: `#f7f7f7`,
+              theme_color: `#102542`,
+              display: `standalone`,
+              icon: `src/assets/favicon.png`
+            },
+          },
+          `gatsby-plugin-offline`,
         ],
       },
     }
