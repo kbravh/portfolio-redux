@@ -10,7 +10,7 @@ export default ({ data }) => {
     <Layout>
       <h1>Blog</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Link to={`blog/` + node.frontmatter.slug} className="blog-link" key={node.id}>
+        <Link to={`/blog/` + node.frontmatter.slug} className="blog-link" key={node.id}>
           <BlogCard post={node} />
         </Link>
       ))}
