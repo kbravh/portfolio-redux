@@ -11,7 +11,9 @@ const Header = () => (
       <Link to="/">Home</Link>
       <Link to="/blog">Blog</Link>
       <Link to="/about">About</Link>
-      <a className="resume-link" download href={Resume}>Resume</a>
+      <span>
+        <a className="resume-link" download href={Resume}>Resume</a>
+      </span>
     </div>
   </nav>
 )

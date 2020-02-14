@@ -11,13 +11,21 @@ nav {
   text-decoration: none;
 }
 
-@media screen and (min-width: 500px) {
-  nav {
-    padding: 0px 2rem 1.45rem;
-  }
+.navlinks > a:hover {
+  border-bottom: 2px solid var(--brand-action);
 }
 
 .resume-link {
   padding: 10px;
   border: 2px solid var(--brand-dark);
+}
+
+.resume-link:hover {
+  background-color: var(--brand-action);
+}
+
+@media screen and (min-width: 500px) {
+  nav {
+    padding: 0px 2rem 1.45rem;
+  }
 }
