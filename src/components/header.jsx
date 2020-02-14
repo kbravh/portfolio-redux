@@ -10,7 +10,6 @@ const Header = () => (
     <div className="navlinks">
       <Link to="/">Home</Link>
       <Link to="/blog">Blog</Link>
-      <Link to="/about">About</Link>
       <span>
         <a className="resume-link" download href={Resume}>Resume</a>
       </span>
