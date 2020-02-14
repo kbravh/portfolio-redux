@@ -54,6 +54,9 @@ module.exports = {
                 {
                   family: `Unica One`,
                   text: ` januryfebmchpilgstovd1234567890,`
+                },
+                {
+                  family: `Andika`,
                 }
               ],
             },
