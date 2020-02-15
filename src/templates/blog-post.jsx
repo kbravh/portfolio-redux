@@ -1,8 +1,7 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Img from "gatsby-image";
 import { Helmet } from "react-helmet";
-import Header from '../components/header'
 
 import '../css/blog-post.css'
 
@@ -25,11 +24,19 @@ export default ({ data }) => {
         <meta property="og:locale" content={post.frontmatter.language} />
       </Helmet>
 
-      <Header />
       <header>
         <div className="blog-banner">
           <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
-          <h1>{post.frontmatter.title}</h1>
+          <div className="blog-banner-details">
+            <div className="blog-banner-header">
+              <Link to="/">Home</Link>
+              <Link to="/blog">Blog</Link>
+            </div>
+            <h1>{post.frontmatter.title}</h1>
+            <div className="blog-banner-footer">
+              <h4>{post.frontmatter.date}</h4>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -45,6 +52,7 @@ export const query = graphql`
       excerpt
       frontmatter {
         title
+        date(formatString: "DD MMMM, YYYY")
         slug
         language
         banner {
