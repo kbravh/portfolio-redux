@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image";
 import { Helmet } from "react-helmet";
+import Header from '../components/header'
 
 import '../css/blog-post.css'
 
@@ -24,11 +25,15 @@ export default ({ data }) => {
         <meta property="og:locale" content={post.frontmatter.language} />
       </Helmet>
 
-      <div className="blog-banner">
-        <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
-        <h1>{post.frontmatter.title}</h1>
-      </div>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <Header />
+      <header>
+        <div className="blog-banner">
+          <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
+          <h1>{post.frontmatter.title}</h1>
+        </div>
+      </header>
+
+      <section dangerouslySetInnerHTML={{ __html: post.html }} />
     </>
   )
 }
