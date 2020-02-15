@@ -1,11 +1,15 @@
 import React from 'react'
 import Header from './header'
+import { Helmet } from "react-helmet";
 
 import '../css/layout.css'
 
 const Layout = ({ children }) => {
   return (
     <>
+    <Helmet>
+      
+    </Helmet>
       <Header />
       <div className="layout-wrapper">
         <div className="left-sidebar">
