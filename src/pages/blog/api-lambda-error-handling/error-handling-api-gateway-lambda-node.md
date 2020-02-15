@@ -124,7 +124,7 @@ We'll now be able to add the actual mapping of the error we throw in the lambda 
 
 ![Integration Response screen](integration-response.png)
 
-The first box will be a regular expression to match the error code we throw back. Let's set our regular expression to check for our error "Failure!". We'll need to add a wildcard in front as the error will be inside of a JSON object, and will thus have other characters in front of it. `regex~.*Failure.*`
+The first box will be a regular expression to match the error code we throw back. Let's set our regular expression to check for our error "Failure!". We'll need to add a wildcard in front as the error will be inside of a JSON object, and will thus have other characters in front of it. `regex~.*Failure!.*`
 
 API Gateway won't run these checks against successful responses! If your lambda doesn't throw an error, it will pass through as a 200 response. You can gain a bit more control over this with Lambda Proxy Integration.
 

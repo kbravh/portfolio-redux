@@ -69,6 +69,11 @@ section {
   color: coral;
 }
 
+.quantifier,
+.charclass {
+  color: inherit;
+}
+
 @media screen and (min-width: 600px){
   .blog-banner-details h1 {
     font-size: 4rem;
