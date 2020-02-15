@@ -24,3 +24,7 @@ section {
   max-width: 960px;
   margin: 0 auto;
 }
+
+.language-js .parameter {
+  color: coral;
+}
