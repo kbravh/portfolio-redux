@@ -4,6 +4,8 @@ import Img from "gatsby-image";
 import { Helmet } from "react-helmet";
 import Layout from "../components/layout";
 
+import '../css/blog-post.css'
+
 export default ({ data }) => {
   const post = data.markdownRemark
   const site = data.site.siteMetadata
@@ -22,8 +24,11 @@ export default ({ data }) => {
         <meta property="og:image" content={post.frontmatter.banner.publicURL} />
         <meta property="og:locale" content={post.frontmatter.language} />
       </Helmet>
-      <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
-      <h1>{post.frontmatter.title}</h1>
+
+      <div className="blog-banner">
+        <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
+        <h1>{post.frontmatter.title}</h1>
+      </div>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </Layout>
   )
