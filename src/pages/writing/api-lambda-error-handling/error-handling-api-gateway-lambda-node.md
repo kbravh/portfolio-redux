@@ -193,4 +193,4 @@ Want to dig a bit deeper and learn a bit more? Here are some useful links:
 
 [Create Models and Mapping Templates for Request and Response Mappings | Amazon Web Services](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
 
-[Node.js 4.3.2 Runtime Now Available on Lambda | Amazon Web Services](https://aws.amazon.com/blogs/compute/node-js-4-3-2-runtime-now-available-on-lambda/)
+[Node.js 4.3.2 Runtime Now Available on Lambda | Amazon Web Services](https://aws.amazon.com/writings/compute/node-js-4-3-2-runtime-now-available-on-lambda/)

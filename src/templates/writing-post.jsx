@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby"
 import Img from "gatsby-image";
 import { Helmet } from "react-helmet";
 
-import '../css/blog-post.css'
+import '../css/writing-post.css'
 
 export default ({ data }) => {
   const post = data.markdownRemark
@@ -16,7 +16,7 @@ export default ({ data }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@kbravh" />
         <meta name="author" content="Karey Higuera <@kbravh>" />
-        <meta property="og:url" content={`${site.siteUrl}/blog/${post.frontmatter.slug}`} />
+        <meta property="og:url" content={`${site.siteUrl}/writing/${post.frontmatter.slug}`} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.frontmatter.description || post.excerpt} />
@@ -25,15 +25,15 @@ export default ({ data }) => {
       </Helmet>
 
       <header>
-        <div className="blog-banner">
+        <div className="writing-banner">
           <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
-          <div className="blog-banner-details">
-            <div className="blog-banner-header">
+          <div className="writing-banner-details">
+            <div className="writing-banner-header">
               <Link to="/">Home</Link>
-              <Link to="/blog">Blog</Link>
+              <Link to="/writing">Writing</Link>
             </div>
             <h1>{post.frontmatter.title}</h1>
-            <div className="blog-banner-footer">
+            <div className="writing-banner-footer">
               <h4>{post.frontmatter.date}</h4>
             </div>
           </div>

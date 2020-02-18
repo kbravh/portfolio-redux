@@ -24,8 +24,8 @@ exports.createPages = async ({
     node
   }) => {
     createPage({
-      path: `blog/${node.frontmatter.slug}`,
-      component: path.resolve(`./src/templates/blog-post.jsx`),
+      path: `writing/${node.frontmatter.slug}`,
+      component: path.resolve(`./src/templates/writing-post.jsx`),
       context: {
         slug: node.frontmatter.slug,
       },

@@ -4,18 +4,18 @@ import Img from 'gatsby-image'
 import {Helmet} from 'react-helmet'
 import Layout from "../components/layout";
 
-import './blog.css'
+import './writing.css'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
   return (
     <Layout>
       <Helmet defer={false}>
-        <title>Blog - Karey Higuera</title>
+        <title>Writing - Karey Higuera</title>
         <meta name="author" content="Karey Higuera" />
-        <meta property="og:url" content={`${site.siteUrl}/blog`} />
+        <meta property="og:url" content={`${site.siteUrl}/writing`} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Blog - Karey Higuera" />
+        <meta property="og:title" content="Writing - Karey Higuera" />
         <meta property="og:description" content="Technical guides for web and full-stack development." />
         <meta property="og:image" content="" />
 
@@ -23,23 +23,23 @@ export default ({ data }) => {
         <meta name="twitter:site" content="" />
         <meta name="twitter:author" content="@kbravh" />
       </Helmet>
-      <h1>Blog</h1>
+      <h1>Writing</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Link to={`/blog/` + node.frontmatter.slug} className="blog-link" key={node.id}>
-          <BlogCard post={node} />
+        <Link to={`/writing/` + node.frontmatter.slug} className="writing-link" key={node.id}>
+          <WritingCard post={node} />
         </Link>
       ))}
     </Layout>
   )
 }
 
-const BlogCard = ({ post }) => {
+const WritingCard = ({ post }) => {
   return (
-    <article className="blog-card">
+    <article className="writing-card">
       <Img fluid={post.frontmatter.banner.childImageSharp.fluid} objectFit="cover" />
-      <div className="blog-card-info">
-        <h2 className="blog-card-title">{post.frontmatter.title}</h2>
-        <h4 className="blog-card-date">{post.frontmatter.date}</h4>
+      <div className="writing-card-info">
+        <h2 className="writing-card-title">{post.frontmatter.title}</h2>
+        <h4 className="writing-card-date">{post.frontmatter.date}</h4>
         {/* when I add tags, i'll swap the order to date, title, tags */}
       </div>
     </article>
