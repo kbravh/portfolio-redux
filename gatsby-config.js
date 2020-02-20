@@ -28,6 +28,7 @@ module.exports = {
             },
           },
           `gatsby-remark-autolink-headers`,
+          `gatsby-remark-external-links`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
