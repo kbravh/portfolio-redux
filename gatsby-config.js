@@ -27,6 +27,7 @@ module.exports = {
               withWebp: true
             },
           },
+          `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -44,38 +45,38 @@ module.exports = {
               }
             },
           },
-          {
-            resolve: `gatsby-plugin-prefetch-google-fonts`,
-            options: {
-              fonts: [
-                {
-                  family: `Odibee Sans`,
-                },
-                {
-                  family: `Unica One`,
-                  text: ` JAaNnuryFebMOchpilgStcvD1234567890,`
-                },
-                {
-                  family: `Andika`,
-                }
-              ],
-            },
-          },
-          {
-            resolve: `gatsby-plugin-manifest`,
-            options: {
-              name: `Karey Higuera Portfolio`,
-              short_name: `kbravh`,
-              start_url: `/`,
-              background_color: `#f7f7f7`,
-              theme_color: `#102542`,
-              display: `standalone`,
-              icon: `src/assets/favicon.png`
-            },
-          },
-          `gatsby-plugin-offline`,
         ],
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Odibee Sans`,
+          },
+          {
+            family: `Unica One`,
+            text: ` JAaNnuryFebMOchpilgStcvD1234567890,`
+          },
+          {
+            family: `Andika`,
+          }
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Karey Higuera Portfolio`,
+        short_name: `kbravh`,
+        start_url: `/`,
+        background_color: `#f7f7f7`,
+        theme_color: `#102542`,
+        display: `standalone`,
+        icon: `src/assets/favicon.png`
+      },
+    },
+    `gatsby-plugin-offline`,
   ]
 }
