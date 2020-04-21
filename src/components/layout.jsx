@@ -4,7 +4,10 @@ import { Helmet } from "react-helmet";
 
 import '../css/layout.css'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pageContext }) => {
+  if (pageContext.layout === "writing-post") {
+    return <>{children}</>
+  }
   return (
     <>
     <Helmet>

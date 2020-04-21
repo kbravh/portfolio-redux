@@ -2,14 +2,13 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from 'gatsby-image'
 import {Helmet} from 'react-helmet'
-import Layout from "../components/layout";
 
 import './writing.css'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
   return (
-    <Layout>
+    <>
       <Helmet defer={false}>
         <title>Writing - Karey Higuera</title>
         <meta name="author" content="Karey Higuera" />
@@ -29,7 +28,7 @@ export default ({ data }) => {
           <WritingCard post={node} />
         </Link>
       ))}
-    </Layout>
+    </>
   )
 }
 

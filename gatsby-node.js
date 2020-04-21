@@ -28,6 +28,7 @@ exports.createPages = async ({
       component: path.resolve(`./src/templates/writing-post.jsx`),
       context: {
         slug: node.frontmatter.slug,
+        layout: "writing-post"
       },
     })
   })

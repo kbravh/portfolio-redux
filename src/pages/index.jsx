@@ -1,12 +1,11 @@
 import React from "react"
 import {Helmet} from 'react-helmet'
 import {graphql} from 'gatsby'
-import Layout from '../components/layout'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
   return (
-    <Layout>
+    <>
       <Helmet defer={false}>
         <title>Karey Higuera - Online Portfolio</title>
         <meta name="author" content="Karey Higuera" />
@@ -23,7 +22,7 @@ export default ({ data }) => {
       <h1>Karey Higuera</h1>
       <h2>Full-stack developer</h2>
       <p>I'm a self-taught, full-stack developer passionate about modern web technologies. I work with JavaScript and React on the front-end and Node.js in cloud services on the backend. I enjoy utilizing serverless functionality to make the web a simpler, more maintainable space.</p>
-    </Layout>
+    </>
   )
 }
 
