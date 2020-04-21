@@ -12,7 +12,7 @@
   grid-template-rows: 1fr;
   overflow: hidden;
   transition: all ease-in-out 0.2s;
-  background-color: maroon;
+  background-color: var(--brand-dark);
 }
 
 .writing-card .gatsby-image-wrapper {
@@ -61,10 +61,17 @@
 .writing-card-date {
   font-family: 'Unica One';
   font-size: 1.3rem;
+  display: none;
 }
 
 @media screen and (min-width: 600px) {
   .writing-card-title {
     font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 300px) {
+  .writing-card-date {
+    display: block;
   }
 }

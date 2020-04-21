@@ -3,13 +3,28 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  background-color: maroon;
+  background-color: var(--brand-dark);
 }
 
 .writing-banner .gatsby-image-wrapper {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   opacity: 0.5;
+}
+
+.writing-banner-header {
+  display: flex;
+  max-width: 90%;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.writing-banner-header a {
+  text-decoration: none;
+  font-family: "Odibee Sans";
+  font-size: 30px;
 }
 
 .writing-banner-details {
@@ -21,6 +36,7 @@
   justify-content: space-between;
   text-align: center;
   align-self: center;
+  align-items: center;
   margin: 0 10px;
   z-index: 5;
 }
@@ -56,7 +72,7 @@ section {
   color: inherit;
 }
 
-@media screen and (min-width: 600px){
+@media screen and (min-width: 600px) {
   .writing-banner-details h1 {
     font-size: 4rem;
   }

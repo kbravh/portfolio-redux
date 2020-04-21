@@ -27,7 +27,14 @@ module.exports = {
               withWebp: true
             },
           },
-          `gatsby-remark-autolink-headers`,
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              maintainCase: true,
+              removeAccents: true,
+              isIconAfterHeader: true,
+            },
+          },
           `gatsby-remark-external-links`,
           {
             resolve: `gatsby-remark-prismjs`,
@@ -41,7 +48,7 @@ module.exports = {
               // Values below are default
               prompt: {
                 user: "kbravh",
-                host: "localhost",
+                host: "home",
                 global: true,
               }
             },
