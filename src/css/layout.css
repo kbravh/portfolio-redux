@@ -12,6 +12,7 @@ body {
 html * {
   color: var(--brand-dark);
   font-family: Andika;
+  box-sizing: border-box;
 }
 
 a:visited {

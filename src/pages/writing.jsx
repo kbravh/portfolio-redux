@@ -40,7 +40,7 @@ const WritingCard = ({ post }) => {
       <div className="writing-card-info">
         <h4 className="writing-card-date">{post.frontmatter.date}</h4>
         <h2 className="writing-card-title">{post.frontmatter.title}</h2>
-        <h4>{commaSeparatedList(post.frontmatter.tags)}</h4>
+        <h4 className="writing-card-tags">{commaSeparatedList(post.frontmatter.tags)}</h4>
       </div>
     </article>
   )
