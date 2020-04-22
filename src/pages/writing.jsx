@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from 'gatsby-image'
 import {Helmet} from 'react-helmet'
+import {commaSeparatedList} from '../util'
 
 import './writing.css'
 
@@ -37,9 +38,9 @@ const WritingCard = ({ post }) => {
     <article className="writing-card">
       <Img fluid={post.frontmatter.banner.childImageSharp.fluid} objectFit="cover" />
       <div className="writing-card-info">
-        <h2 className="writing-card-title">{post.frontmatter.title}</h2>
         <h4 className="writing-card-date">{post.frontmatter.date}</h4>
-        {/* when I add tags, i'll swap the order to date, title, tags */}
+        <h2 className="writing-card-title">{post.frontmatter.title}</h2>
+        <h4>{commaSeparatedList(post.frontmatter.tags)}</h4>
       </div>
     </article>
   )
@@ -64,6 +65,7 @@ export const query = graphql`
             date(formatString: "DD MMMM, YYYY")
             slug
             description
+            tags
           }
         }
       }

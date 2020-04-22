@@ -38,9 +38,6 @@
   max-height: 40vh;
   z-index: 2;
   background-color: #2222;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 3fr 1fr;
 }
 
 .writing-card-info * {

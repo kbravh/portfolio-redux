@@ -8,7 +8,7 @@ language: en_US
 tags:
   - AWS
   - Lambda
-  - Node
+  - Node.js
 ---
 
 For a recent project, I set up a lambda function that would hydrate a template using data posted to it through API Gateway. The template name would be specified in the request, which means I needed to send back some errors if anything went wrong, such as the template not being found.
