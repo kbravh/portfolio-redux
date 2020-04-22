@@ -20,6 +20,8 @@ export default ({ data }) => {
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.frontmatter.description || post.excerpt} />
         <meta property="og:image" content={post.frontmatter.banner.publicURL} />
+        <meta property="og:image:width" content="1050" />
+        <meta property="og:image:height" content="700" />
         <meta property="og:locale" content={post.frontmatter.language} />
       </Helmet>
 
