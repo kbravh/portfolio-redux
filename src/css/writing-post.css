@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  background-color: var(--brand-dark);
+  background-color: var(--brand-fg);
 }
 
 .writing-banner .gatsby-image-wrapper {
@@ -54,7 +54,7 @@
 }
 
 .writing-banner * {
-  color: var(--brand-light);
+  color: var(--brand-bg);
 }
 
 .blog-section {
@@ -80,6 +80,10 @@
 .quantifier,
 .charclass {
   color: inherit;
+}
+
+.unsplash-credit * {
+  color: var(--brand-bg);
 }
 
 @media screen and (min-width: 960px) {

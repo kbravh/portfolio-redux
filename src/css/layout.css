@@ -1,6 +1,6 @@
 :root {
-  --brand-dark: #102542;
-  --brand-light: #F7F7F7; /* CCD6EB */
+  --brand-fg: #102542;
+  --brand-bg: #F7F7F7;
   --brand-action: #F87060;
 }
 
@@ -10,7 +10,7 @@ body {
 }
 
 html * {
-  color: var(--brand-dark);
+  color: var(--brand-fg);
   font-family: Andika;
   box-sizing: border-box;
 }
@@ -19,17 +19,17 @@ body::-webkit-scrollbar {
   width: 11px;
 }
 body::-webkit-scrollbar-track {
-  background: var(--brand-light);
+  background: var(--brand-bg);
 }
 body::-webkit-scrollbar-thumb {
   background-color: var(--brand-action) ;
   border-radius: 6px;
-  border: 3px solid var(--brand-light);
+  border: 3px solid var(--brand-bg);
 }
 
 body {
   scrollbar-width: thin;
-  scrollbar-color: var(--brand-light);
+  scrollbar-color: var(--brand-bg);
 }
 
 a:visited {

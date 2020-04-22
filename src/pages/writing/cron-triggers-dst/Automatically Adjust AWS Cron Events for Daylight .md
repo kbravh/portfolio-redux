@@ -3,7 +3,7 @@ title: Automatically Adjust AWS Cron Events for Daylight Savings Time
 description: Adjust AWS Cron Events using Lambda so that Daylight Savings Time won't affect your services.
 date: 2020-04-21
 slug: adjust-cron-event-for-dst
-banner: ./banner.png
+banner: ./aron-visuals-BXOXnQ26B7o-unsplash.jpg
 language: en_US
 tags:
   - AWS
@@ -159,3 +159,7 @@ So there we go, we can now automatically adjust our cron triggers in AWS so that
 This could be resolved pretty simply by extracting all of this functionality into a separate function. Using cron expressions, we could also set this function to only run on Sundays in March and November when the time changes would happen!
 
 Thanks for sticking around and reading. Hopefully this will help you out with your work in AWS!
+
+---
+
+Photo by <a class="unsplash-credit" style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@aronvisuals?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="High-resolution photos from Aron Visuals"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Aron Visuals</span></a>

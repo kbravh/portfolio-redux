@@ -18,7 +18,7 @@ nav {
 
 .resume-link {
   padding: 10px;
-  border: 2px solid var(--brand-dark);
+  border: 2px solid var(--brand-fg);
 }
 
 .resume-link:hover {
