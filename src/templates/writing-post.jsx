@@ -40,7 +40,7 @@ export default ({ data }) => {
         </div>
       </header>
 
-      <section dangerouslySetInnerHTML={{ __html: post.html }} />
+      <section className="blog-section" dangerouslySetInnerHTML={{ __html: post.html }} />
     </>
   )
 }

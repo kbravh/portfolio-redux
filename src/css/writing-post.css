@@ -57,10 +57,19 @@
   color: var(--brand-light);
 }
 
-section {
-  padding: 20px;
+.blog-section {
+  /* padding: 20px; */
   max-width: 960px;
   margin: 0 auto;
+}
+
+.blog-section > *:not(.gatsby-highlight){
+  padding: 0px 20px;
+}
+
+/* remove the border radius when it reaches the edges of the screen */
+.blog-section >.gatsby-highlight > pre {
+  border-radius: 0;
 }
 
 .language-js .parameter {
@@ -70,6 +79,13 @@ section {
 .quantifier,
 .charclass {
   color: inherit;
+}
+
+@media screen and (min-width: 960px) {
+  /* add the border radius back when it pulls away from the edges of the screen */
+.blog-section >.gatsby-highlight > pre {
+  border-radius: 0.3rem;
+}
 }
 
 @media screen and (min-width: 600px) {
