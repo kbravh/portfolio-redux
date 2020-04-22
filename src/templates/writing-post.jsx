@@ -10,8 +10,7 @@ export default ({ data }) => {
   const site = data.site.siteMetadata
   return (
     <>
-      <Helmet defer={false}>
-        <title>{post.frontmatter.title}</title>
+      <Helmet title={post.frontmatter.title} defer={false}>
         <meta name="description" content={post.frontmatter.description || post.excerpt} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@kbravh" />

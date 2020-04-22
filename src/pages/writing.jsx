@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from 'gatsby-image'
-import {Helmet} from 'react-helmet'
-import {commaSeparatedList} from '../util'
+import { Helmet } from 'react-helmet'
+import { commaSeparatedList } from '../util'
 
 import './writing.css'
 
@@ -10,8 +10,7 @@ export default ({ data }) => {
   const site = data.site.siteMetadata
   return (
     <>
-      <Helmet defer={false}>
-        <title>Writing - Karey Higuera</title>
+      <Helmet title="Writing - Karey Higuera" defer={false}>
         <meta name="author" content="Karey Higuera" />
         <meta property="og:url" content={`${site.siteUrl}/writing`} />
         <meta property="og:type" content="article" />

@@ -10,15 +10,13 @@ const Layout = ({ children, pageContext }) => {
   }
   return (
     <>
-      <Helmet>
-
-      </Helmet>
+      <Helmet title="Karey Higuera - Online Portfolio" />
       <Header />
       <div className="layout-wrapper">
         <div className="left-sidebar">
           <ul className="logo-link-container">
             <li>
-              <a href="https://github.com/kbravh" alt="Github">
+              <a href="https://github.com/kbravh" alt="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="feather feather-github" viewBox="0 0 24 24">
                   <title>Github</title>
                   <defs />
