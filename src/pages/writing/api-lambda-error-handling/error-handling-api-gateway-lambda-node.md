@@ -23,17 +23,15 @@ We can prepare two test events in the Lambda console to trigger errors and succe
 
 Create two test events using the code snippets below.
 
-Success
-
 ```js
+// Success
 {
   "trigger": true
 }
 ```
 
-Failure
-
 ```js
+// Failure
 {
   "trigger": false
 }
