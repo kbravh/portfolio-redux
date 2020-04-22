@@ -23,11 +23,13 @@ export default ({ data }) => {
         <meta name="twitter:author" content="@kbravh" />
       </Helmet>
       <h1>Writing</h1>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Link to={`/writing/` + node.frontmatter.slug} className="writing-link" key={node.id}>
-          <WritingCard post={node} />
-        </Link>
-      ))}
+      <section className="writing-cards">
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <Link to={`/writing/` + node.frontmatter.slug} className="writing-link" key={node.id}>
+            <WritingCard post={node} />
+          </Link>
+        ))}
+      </section>
     </>
   )
 }

@@ -3,6 +3,10 @@
   color: inherit;
 }
 
+.writing-cards {
+  padding-bottom: 50px;
+}
+
 .writing-card {
   height: 50vh;
   max-height: 400px;
