@@ -36,7 +36,7 @@ const Layout = ({ children, pageContext }) => {
             </li>
             <li>
               <a href="https://codepen.io/kbravh" alt="CodePen">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" class="feather feather-codepen" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="feather feather-codepen" viewBox="0 0 24 24">
                   <defs />
                   <path d="M2 15.5l10-7 10 7M12 2v6.5m10 0l-10 7-10-7M12 2l10 6.5v7L12 22 2 15.5v-7zm0 20v-6.5" />
                 </svg>
