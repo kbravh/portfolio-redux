@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "DankMono";
+  src: url("DankMono-Regular.otf");
+}
+
+@font-face {
+  font-family: "DankMono";
+  src: url("DankMono-Italic.otf");
+  font-style: italic;
+}

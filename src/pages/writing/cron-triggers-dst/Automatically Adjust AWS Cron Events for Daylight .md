@@ -22,7 +22,7 @@ For those who may not be familiar with Daylight Savings Time (DST), it's the pra
 ```js
 /* Original CRON triggers when not in DST */
 0 13 ? * MON-FRI * // spin-up at 13:00 UTC (7am CST, Monday through Friday)
-0 1 ? * TUE-SAT *// spin-down at 1:00 UTC (7pm CST, Monday through Friday)
+0 1 ? * TUE-SAT * // spin-down at 1:00 UTC (7pm CST, Monday through Friday)
 ```
 
     Curious about how cron events work? Cron expressions in AWS are made up of 6 slots. From left to right, they stand for Minutes (0-59), Hours (0-23), Day of the Month (0-31), Month (1-12 or JAN-DEC), Day of the Week (1-7 or SUN-SAT), and Year (1970-2199). An asterisk can stand in as a wildcard in any slot.
@@ -49,9 +49,6 @@ import pytz
 utc_time = datetime.utcnow().replace(tzinfo=pytz.utc)
 cst_timezone = pytz.timezone('US/Central')
 cst_time = utc_time.astimezone(cst_timezone)
-
-# This will show the offset in seconds for DST. If it's zero, not DST
-is_dst = cst_time.tzinfo._dst.seconds != 0
 ```
 
 We import the `py~datetime` library, the main Python library for working with any date or time objects, and `py~pytz`, a library for accurately handling timezones. We create `py~utc_time` and set it equal to the current time in UTC with `py~datetime.utcnow()`. Note that we have to manually replace the timezone information on the native `py~datetime` object with the `py~utc` timezone from `py~pytz`.
@@ -61,7 +58,8 @@ Next, we create a central time timezone object `py~cst_timezone` and pull that i
 So now that we have our current time in the CST timezone, we can determine if it's Daylight Savings Time.
 
 ```python
-# This will show the offset in seconds for DST. If it's zero, not DST
+# This will show the offset in seconds for DST ⏰
+# If it's zero, we're not in DST
 is_dst = cst_time.tzinfo._dst.seconds != 0
 ```
 

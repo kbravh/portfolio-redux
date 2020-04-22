@@ -67,12 +67,21 @@ module.exports = {
           },
           {
             family: `Unica One`,
-            text: ` JAaNnuryFebMOchpilgStcvD1234567890,`
+            // text: ` JAaNnuryFebMOchpilgStcvD1234567890,`
           },
           {
             family: `Andika`,
           }
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        custom: {
+          families: [""],
+          urls: ["/fonts/fonts.css"],
+        },
       },
     },
     {
