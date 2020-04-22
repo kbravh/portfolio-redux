@@ -52,9 +52,11 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "DD MMMM, YYYY")
+        description
         slug
         language
         banner {
+          publicURL
           childImageSharp {
             fluid(maxWidth: 700, quality: 90) {
               ...GatsbyImageSharpFluid_withWebp
