@@ -61,6 +61,7 @@
   max-width: 590px;
   margin: 0 auto;
   margin-bottom: 100px;
+  padding-top: 70px;
 }
 
 .blog-section>*:not(.gatsby-highlight) {
