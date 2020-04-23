@@ -2,11 +2,12 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image";
 import { Helmet } from "react-helmet";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import '../css/writing-post.css'
 
 export default ({ data }) => {
-  const post = data.markdownRemark
+  const post = data.mdx
   const site = data.site.siteMetadata
   return (
     <>
@@ -41,15 +42,17 @@ export default ({ data }) => {
         </div>
       </header>
 
-      <section className="blog-section" dangerouslySetInnerHTML={{ __html: post.html }} />
+      <section className="blog-section">
+        <MDXRenderer>{post.body}</MDXRenderer>
+      </section>
     </>
   )
 }
 
 export const query = graphql`
   query($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-      html
+    mdx(frontmatter: { slug: { eq: $slug } }) {
+      body
       excerpt
       frontmatter {
         title

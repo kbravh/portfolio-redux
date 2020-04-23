@@ -24,7 +24,7 @@ export default ({ data }) => {
       </Helmet>
       <h1>Writing</h1>
       <section className="writing-cards">
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        {data.allMdx.edges.map(({ node }) => (
           <Link to={`/writing/` + node.frontmatter.slug} className="writing-link" key={node.id}>
             <WritingCard post={node} />
           </Link>
@@ -49,7 +49,7 @@ const WritingCard = ({ post }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
         node {

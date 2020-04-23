@@ -6,7 +6,7 @@ exports.createPages = async ({
 }) => {
   const result = await graphql(`
     query {
-      allMarkdownRemark {
+      allMdx {
         edges {
           node {
             frontmatter {
@@ -20,7 +20,7 @@ exports.createPages = async ({
   const {
     createPage
   } = actions
-  result.data.allMarkdownRemark.edges.forEach(({
+  result.data.allMdx.edges.forEach(({
     node
   }) => {
     createPage({
