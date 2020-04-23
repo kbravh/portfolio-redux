@@ -80,16 +80,6 @@
 /*Code Section styles*/
 .gatsby-highlight * {
   font-family: DankMono;
-  font-size: 14px;
-}
-
-.language-js .parameter {
-  color: coral;
-}
-
-.quantifier,
-.charclass {
-  color: inherit;
 }
 
 @media screen and (min-width: 591px) {
