@@ -82,6 +82,18 @@
   font-family: DankMono;
 }
 
+.gatsby-highlight pre::-webkit-scrollbar {
+  width: 11px;
+}
+.gatsby-highlight pre::-webkit-scrollbar-track {
+  background: none;
+}
+.gatsby-highlight pre::-webkit-scrollbar-thumb {
+  background-color: var(--brand-action);
+  border-radius: 6px;
+  border: 3px solid var(--brand-fg); /* this color matches the code editor background */
+}
+
 @media screen and (min-width: 591px) {
 
   /* add the border radius back when it pulls away from the edges of the screen */
