@@ -21,8 +21,8 @@ For those who may not be familiar with Daylight Savings Time (DST), it's the pra
 
 ```js
 /* Original CRON triggers when not in DST */
-0 13 ? * MON-FRI * // spin-up at 13:00 UTC (7am CST, Monday through Friday)
-0 1 ? * TUE-SAT * // spin-down at 1:00 UTC (7pm CST, Monday through Friday)
+0 13 ? * MON-FRI * // spin-up at 13:00 UTC (7am CST)
+0 1 ? * TUE-SAT * // spin-down at 1:00 UTC (7pm CST)
 ```
 
     Curious about how cron events work? Cron expressions in AWS are made up of 6 slots. From left to right, they stand for Minutes (0-59), Hours (0-23), Day of the Month (0-31), Month (1-12 or JAN-DEC), Day of the Week (1-7 or SUN-SAT), and Year (1970-2199). An asterisk can stand in as a wildcard in any slot.
@@ -96,22 +96,64 @@ We create our `py~boto3` client to be able to access our AWS resources. Assuming
 
 ```python
 # Remove targets from current rules
-client.remove_targets(Rule=START_RULE,Ids=[(start_settings['Targets'][0]['Id'])])
-client.remove_targets(Rule=STOP_RULE,Ids=[(stop_settings['Targets'][0]['Id'])])
+client.remove_targets(
+  Rule=START_RULE,
+  Ids=[(start_settings['Targets'][0]['Id'])]
+)
+client.remove_targets(
+  Rule=STOP_RULE,
+  Ids=[(stop_settings['Targets'][0]['Id'])]
+)
 # Delete rules
 client.delete_rule(Name=START_RULE)
 client.delete_rule(Name=STOP_RULE)
-# Add new rules
-client.put_rule(Name=START_RULE, ScheduleExpression=start_schedule, State='ENABLED', Description="Automatic trigger for the Spinup-Spindown function.")
-client.put_rule(Name=STOP_RULE, ScheduleExpression=stop_schedule, State='ENABLED', Description="Automatic trigger for the Spinup-Spindown function")
-# Add targets
-client.put_targets(Rule=START_RULE, Targets=[{'Id': start_settings['Targets'][0]['Id'], 'Arn':start_settings['Targets'][0]['Arn'], 'Input': start_settings['Targets'][0]['Input']}])
-client.put_targets(Rule=STOP_RULE, Targets=[{'Id': stop_settings['Targets'][0]['Id'], 'Arn':stop_settings['Targets'][0]['Arn'], 'Input': stop_settings['Targets'][0]['Input']}])
 ```
 
-Technically here we aren't updating the cron triggers, but rather replacing them. In order to delete a cron event trigger in AWS, you must first remove its targets by passing in an array of IDs. We'll give it the information we got from our previous call. For example `py~start_settings['Targets'][0]['Id']` will be the ID of the first target in the array we got back from the rule's information.
+Technically here we aren't updating the cron triggers, but rather replacing them. In order to delete a cron event trigger in AWS, you must first remove its targets by passing in an array of IDs. We'll give it the information we got from our previous call. We only have one target, so we pull the first (and only) item from our settings that we queried like `py~start_settings['Targets'][0]['Id']` . Once we delete our targets, we can delete our rules.
 
-Next, we delete the start and stop rules, add in our updated rules, and add our targets back in. We can take all of this data from the settings we pulled earlier. Our updated cron rules are in place!
+```python
+# Add new rules
+client.put_rule(
+  Name=START_RULE,
+  ScheduleExpression=start_schedule,
+  State='ENABLED',
+  Description="Automatic trigger for the Spinup-Spindown function."
+)
+client.put_rule(
+  Name=STOP_RULE,
+  ScheduleExpression=stop_schedule,
+  State='ENABLED',
+  Description="Automatic trigger for the Spinup-Spindown function"
+)
+```
+
+Now, we can add our new cron rules in. We'll set the same name as before and set our new cron expressions that we defined as `py~start_schedule` and `py~stop_schedule`. We enable the rule, and add our description.
+
+```python
+# Add targets
+client.put_targets(
+  Rule=START_RULE,
+  Targets=[
+    {
+      'Id': start_settings['Targets'][0]['Id'],
+      'Arn':start_settings['Targets'][0]['Arn'],
+      'Input': start_settings['Targets'][0]['Input']
+    }
+  ]
+)
+client.put_targets(
+  Rule=STOP_RULE,
+  Targets=[
+    {
+      'Id': stop_settings['Targets'][0]['Id'],
+      'Arn':stop_settings['Targets'][0]['Arn'],
+      'Input': stop_settings['Targets'][0]['Input']
+    }
+  ]
+)
+```
+
+Finally, we add our targets back in. We can do this by pulling all the information out of our settings objects. Our updated cron rules are in place!
 
 ## Final Adjustments
 
