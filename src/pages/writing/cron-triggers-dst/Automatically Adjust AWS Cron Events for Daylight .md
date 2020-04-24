@@ -15,7 +15,7 @@ In order to lower costs for unused resources in AWS (which add up way faster tha
 
 We have the environments set to sleep every weekday between 7pm and 7am, so they'll be back up in time for the first developers who get in at 7:30am. They also sleep all weekend since we don't do any development on Saturday or Sunday. Things were working flawlessly! That is, until Daylight Savings Time hit.
 
-## The Problem
+# The Problem
 
 For those who may not be familiar with Daylight Savings Time (DST), it's the practice of setting the clocks forward one hour in spring and back one hour in fall to better take advantage of the daylight hours. Unfortunately, since the cron triggers in AWS are set up on UTC time, the DST time change caused our spin-up function to run an hour late.
 
@@ -37,7 +37,7 @@ I adjusted our cron events to account for the time change as follows:
 
 This would work, but it was a short term fix. I wanted a longer term solution so we wouldn't run into this problem again in November when the time changed back.
 
-## The Plan
+# The Plan
 
 It occurred to me that I could have the very same spin-up/spin-down function adjust its own cron triggers based on whether or not we were in Daylight Savings Time. To do this, I would just need to add a little bit of time logic.
 
@@ -65,7 +65,7 @@ is_dst = cst_time.tzinfo._dst.seconds != 0
 
 If we dig down into our current time object `py~cst_time`, we can get more information about the timezone. By accessing our timezone information (`py~tzinfo`), then our DST information (`py~_dst`), we can find how many `py~seconds` of an offset is currently on our time. If we are in DST, the offset will not be 0 (it will be 3600 seconds, really, since time gets shifted an hour).
 
-## The Triggers
+# The Triggers
 
 Now that we know if it's Daylight Savings Time or not, we can adjust our cron triggers. First, let's define what our expressions will be based on if we're in DST. During DST, we'll want the earlier triggers.
 
@@ -155,7 +155,7 @@ client.put_targets(
 
 Finally, we add our targets back in. We can do this by pulling all the information out of our settings objects. Our updated cron rules are in place!
 
-## Final Adjustments
+# Final Adjustments
 
 So now our function can update its own cron triggers, awesome! But wait; what happens on the days that the time change actually happens? Won't our function run an hour late or an hour early on that one particular day? It will indeed, but we come out lucky here.
 
@@ -190,7 +190,7 @@ else:
 
 We take our `py~cst_time` object and pull the day of the week out using `py~weekday()`. We then check whether it's a Saturday or a Sunday, and if so, we return a statusCode and message and stop execution. Otherwise we can get things going!
 
-## Final Thoughts
+# Final Thoughts
 
 So there we go, we can now automatically adjust our cron triggers in AWS so that Daylight Savings Time won't affect us again! However, there are definitely some future improvements we could make. For example, you might ask the following questions:
 

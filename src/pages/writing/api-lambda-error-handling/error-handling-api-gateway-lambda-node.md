@@ -15,7 +15,7 @@ For a recent project, I set up a lambda function that would hydrate a template u
 
 These errors are handled differently in async and non-async functions. We will go over those in detail below, then look at how to catch those errors in the Gateway and return the correct API response.
 
-## Setup
+# Setup
 
 We can prepare two test events in the Lambda console to trigger errors and successful runs. Create a new lambda function using Node.js 12. You can leave the default execution role. Once the function is created, you will see options at the top right of the page. Choose to configure test events.
 
@@ -39,7 +39,7 @@ Create two test events using the code snippets below.
 
 We can now manually trigger successes and failures very easily using our test events. Let's set up our functions.
 
-## Async Lambda Function Errors
+# Async Lambda Function Errors
 
 Async functions allow for errors and results to be returned using `js~throw` and `js~return`, respectively. The following sample function demonstrates this functionality.
 
@@ -71,11 +71,11 @@ exports.handler = async event => {
 }
 ```
 
-## Non-Async Lambda Function Errors
+# Non-Async Lambda Function Errors
 
 Handling responses and errors in non-async functions comes down to `js~context` and `js~callback`, two parameters passed in to the handler functions. The original way to return a response or error was using `js~context.succeed()` and `js~context.fail()`. This, although still functional, was superseded by `js~callback()` once AWS added support for Node 4.3.2. These are implemented as follows:
 
-### Context Method
+## Context Method
 
 ```js
 exports.handler = (event, context) => {
@@ -89,7 +89,7 @@ exports.handler = (event, context) => {
 }
 ```
 
-### Callback Method
+## Callback Method
 
 ```js
 exports.handler = (event, context, callback) => {
@@ -102,7 +102,7 @@ exports.handler = (event, context, callback) => {
 }
 ```
 
-## API Gateway Error Mapping
+# API Gateway Error Mapping
 
 Now that we have our errors propagating correctly from our Lambda functions, we can catch those errors and map them to HTTP responses. First, create a new REST API. We can leave default settings and add a name and description. Next, we'll add a POST method to it by choosing Add Method from the Actions menu, then choosing POST.
 
@@ -132,7 +132,7 @@ API Gateway won't run these checks against successful responses! If your lambda 
 
 We can now choose the 400 error code from the dropdown and save our changes.
 
-## Test It Out
+# Test It Out
 
 That's it for the setup! We can now test out our error mapping. On the overview screen, we see the leftmost box marked Test.
 
@@ -144,7 +144,7 @@ On the test page, we are given a box to provide a test body. We can use the same
 
 Congrats! You've successfully set up error mapping in API Gateway.
 
-## Extra: Custom Error Objects
+# Extra: Custom Error Objects
 
 What if we want to send back something more than just a string as an error? We might want to send back more information such as a stack trace, a list of multiple errors, or a JSON object. Luckily we can do this without too much more effort!
 
