@@ -15,7 +15,7 @@ For a recent project, I set up a lambda function that would hydrate a template u
 
 These errors are handled differently in async and non-async functions. We will go over those in detail below, then look at how to catch those errors in the Gateway and return the correct API response.
 
-# Setup
+## Setup
 
 We can prepare two test events in the Lambda console to trigger errors and successful runs. Create a new lambda function using Node.js 12. You can leave the default execution role. Once the function is created, you will see options at the top right of the page. Choose to configure test events.
 
