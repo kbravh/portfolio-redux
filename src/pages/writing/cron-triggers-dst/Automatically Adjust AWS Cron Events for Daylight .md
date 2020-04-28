@@ -25,7 +25,15 @@ For those who may not be familiar with Daylight Savings Time (DST), it's the pra
 0 1 ? * TUE-SAT * // spin-down at 1:00 UTC (7pm CST)
 ```
 
-    Curious about how cron events work? Cron expressions in AWS are made up of 6 slots. From left to right, they stand for Minutes (0-59), Hours (0-23), Day of the Month (0-31), Month (1-12 or JAN-DEC), Day of the Week (1-7 or SUN-SAT), and Year (1970-2199). An asterisk can stand in as a wildcard in any slot.
+> Curious about how cron events work? Cron expressions in AWS are made up of 6 slots. From left to right:
+* Minutes (0-59)
+* Hours (0-23)
+* Day of the Month (0-31)
+* Month (1-12 or JAN-DEC)
+* Day of the Week (1-7 or SUN-SAT)
+* Year (1970-2199)
+>
+> An asterisk can stand in as a wildcard in any slot.
 
 I adjusted our cron events to account for the time change as follows:
 
@@ -194,7 +202,8 @@ We take our `py~cst_time` object and pull the day of the week out using `py~week
 
 So there we go, we can now automatically adjust our cron triggers in AWS so that Daylight Savings Time won't affect us again! However, there are definitely some future improvements we could make. For example, you might ask the following questions:
 
-> Why do we adjust the rules every single day even when the rules will only change twice a year? What if we have a function that does need to run on weekends that we don't want to be late twice a year?
+> Why do we adjust the rules every single day even when the rules will only change twice a year?
+> What if we have a function that does need to run on weekends that we don't want to be late twice a year?
 
 This could be resolved pretty simply by extracting all of this functionality into a separate function. Using cron expressions, we could also set this function to only run on Sundays in March and November when the time changes would happen!
 
