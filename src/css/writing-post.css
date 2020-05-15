@@ -64,6 +64,10 @@
   padding-top: 70px;
 }
 
+.blog-section h1 {
+  margin-top: 2.75rem;
+}
+
 .blog-section>*:not(.gatsby-highlight) {
   padding: 0px 20px;
 }
