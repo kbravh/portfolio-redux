@@ -86,6 +86,11 @@
   font-family: DankMono;
 }
 
+code::selection {
+  background: var(--brand-action);
+  color: var(--brand-fg);
+}
+
 .gatsby-highlight pre::-webkit-scrollbar {
   width: 11px;
 }
