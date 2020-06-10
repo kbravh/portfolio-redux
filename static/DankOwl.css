@@ -24,7 +24,8 @@ pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] ::-moz-selection {
   text-shadow: none;
-  background: rgba(29, 59, 83, 0.99);
+  background: var(--brand-action);
+  color: var(--brand-fg);
 }
 
 pre[class*="language-"]::selection,
@@ -32,7 +33,8 @@ pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
   text-shadow: none;
-  background: rgba(29, 59, 83, 0.99);
+  background: var(--brand-action);
+  color: var(--brand-bg);
 }
 
 @media print {
