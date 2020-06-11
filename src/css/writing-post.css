@@ -58,7 +58,8 @@
 }
 
 .blog-section {
-  max-width: 590px;
+  /* max-width: 590px; we'll drop this down when we have a floating sidebar with TOC or something*/
+  max-width: 900px;
   margin: 0 auto;
   margin-bottom: 100px;
   padding-top: 70px;
