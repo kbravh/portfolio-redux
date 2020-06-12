@@ -10,7 +10,7 @@ tags:
   - Lambda
 ---
 
-AWS Lambda provides a way to create versions of a function in order to test functionality in lower environments before moving it into higher environments. 
+Have you ever wanted to make a change to a Lambda function that's running in your live environment, but you've been worried that you'd make a mistake and have some down time? Or worse, have you made the change and brought down your site? 😬 AWS Lambda provides a way to create versions of a function in order to test functionality in lower environments before moving it into higher environments, all without the risk of affecting your deployed code. 
 
 # Creating a version
 
@@ -73,5 +73,9 @@ From the version dropdown on the page, we can now choose version 2 and save our 
 ![Alias version dropdown](alias_version_dropdown.png)
 
 Production will now be using our newer version! 🎉
+
+# Final Thoughts
+
+Congratulations! You'll now be a pro working with versions and aliases in AWS Lambda. Your work mates will be in awe of your awesome devops skills, and your clients will be well pleased knowing their sites will be more resilient and much less likely to have down time. 
 
 Hero photo by <a class="unsplash-credit" style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@brett_jordan?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="High-resolution photos from Aron Visuals"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Brett Jordan</span></a>
