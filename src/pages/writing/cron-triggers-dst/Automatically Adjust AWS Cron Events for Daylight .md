@@ -203,12 +203,110 @@ We take our `py~cst_time` object and pull the day of the week out using `py~week
 So there we go, we can now automatically adjust our cron triggers in AWS so that Daylight Savings Time won't affect us again! However, there are definitely some future improvements we could make. For example, you might ask the following questions:
 
 > Why do we adjust the rules every single day even when the rules will only change twice a year?
-> What if we have a function that does need to run on weekends that we don't want to be late twice a year?
+>
+> What if we have a function that needs to run on weekends that we don't want to be late twice a year?
 
-This could be resolved pretty simply by extracting all of this functionality into a separate function. Using cron expressions, we could also set this function to only run on Sundays in March and November when the time changes would happen!
+This could be resolved pretty simply by extracting all of this functionality into a separate function. Using cron expressions, we could also set this function to only run on Sundays in March and November when the time changes would happen! Let's wrap this all up (or checkout the [gist](https://gist.github.com/kbravh/2ac6652b21e0f559ab883100cb1282ed)!):
+
+```js
+/* CRON triggers for DST function */
+0 12 8-14 MAR SUN * // 13:00 UTC (6am CST) for the second Sunday in March
+0 0 1-7 NOV SUN * // 1:00 UTC (6pm CST) for the first Sunday in November
+```
+
+```python
+from datetime import datetime
+import pytz
+import boto3
+
+# define our CloudEvents client
+client = boto3.client('events')
+
+# Let's grab our current time in GMT and convert it to local time (US Central)
+utc_time = datetime.utcnow().replace(tzinfo=pytz.utc)
+cst_timezone = pytz.timezone('US/Central')
+cst_time = utc_time.astimezone(cst_timezone)
+
+# This will show the offset in seconds for DST ⏰
+# If it's zero, we're not in DST
+is_dst = cst_time.tzinfo._dst.seconds != 0
+
+# Determine our new cron expressions for a function running everyday at 7am and 7pm CST
+if is_dst:
+  start_schedule = 'cron(0 12 ? * * *)'
+  stop_schedule = 'cron(0 0 ? * * *)'
+else:
+  start_schedule = 'cron(0 13 ? * * *)'
+  stop_schedule = 'cron(0 1 ? * * *)'
+
+START_RULE = "start_rule"
+STOP_RULE = "stop_rule"
+
+# Fetch the targets of our current cron rules
+start_settings = client.list_targets_by_rule(Rule=START_RULE)
+stop_settings = client.list_targets_by_rule(Rule=STOP_RULE)
+
+# Remove targets from current rules
+client.remove_targets(
+  Rule=START_RULE,
+  Ids=[(start_settings['Targets'][0]['Id'])]
+)
+client.remove_targets(
+  Rule=STOP_RULE,
+  Ids=[(stop_settings['Targets'][0]['Id'])]
+)
+
+# Delete rules
+client.delete_rule(Name=START_RULE)
+client.delete_rule(Name=STOP_RULE)
+
+# Add new rules
+client.put_rule(
+  Name=START_RULE,
+  ScheduleExpression=start_schedule,
+  State='ENABLED',
+  Description="Automatic trigger for the function."
+)
+client.put_rule(
+  Name=STOP_RULE,
+  ScheduleExpression=stop_schedule,
+  State='ENABLED',
+  Description="Automatic trigger for the function"
+)
+
+# Add back our targets
+client.put_targets(
+  Rule=START_RULE,
+  Targets=[
+    {
+      'Id': start_settings['Targets'][0]['Id'],
+      'Arn':start_settings['Targets'][0]['Arn'],
+      'Input': start_settings['Targets'][0]['Input']
+    }
+  ]
+)
+client.put_targets(
+  Rule=STOP_RULE,
+  Targets=[
+    {
+      'Id': stop_settings['Targets'][0]['Id'],
+      'Arn':stop_settings['Targets'][0]['Arn'],
+      'Input': stop_settings['Targets'][0]['Input']
+    }
+  ]
+)
+```
 
 Thanks for sticking around and reading. Hopefully this will help you out with your work in AWS!
 
 ---
 
-Hero photo by <a class="unsplash-credit" style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@aronvisuals?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="High-resolution photos from Aron Visuals"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Aron Visuals</span></a>
+Want to dig a bit deeper and learn a bit more? Here are some useful links:
+
+[Daylight Savings Time in the US | Wikipedia](https://en.wikipedia.org/wiki/Daylight_saving_time_in_the_United_States)
+
+[Schedule Expressions for Rules | Amazon Web Services](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
+
+[Quick and Simple Cron Expression Editor | crontab guru](https://crontab.guru/)
+
+<!-- Hero photo by Aron Visuals https://unsplash.com/@aronvisuals -->
