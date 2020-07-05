@@ -5,7 +5,9 @@ module.exports = {
         author: `@kbravh`,
         siteUrl: `https://kbravh.dev`
     },
-    plugins: [{
+    plugins: [
+        `gatsby-plugin-mdx-source-name`,
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `writing`,
@@ -29,6 +31,7 @@ module.exports = {
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
+        `gatsby-plugin-mdx-source-name`,
         {
             resolve: `gatsby-plugin-mdx`,
             options: {
