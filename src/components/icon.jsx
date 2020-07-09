@@ -19,7 +19,7 @@ const Icon = ({ icon, ...props}) => {
       )
     case "globe":
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" {...props} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" {...props} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-globe">
           <circle cx="12" cy="12" r="10" />
           <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
         </svg>
