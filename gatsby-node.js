@@ -24,7 +24,6 @@ exports.createPages = async ({
   result.data.allMdx.nodes.forEach(node => {
     switch (node.fields.source) {
       case "writing":
-        console.log(`Adding writing page ${node.frontmatter.slug}`)
         createPage({
           path: `writing/${node.frontmatter.slug}`,
           component: path.resolve(`./src/templates/writing-post.jsx`),
@@ -35,7 +34,6 @@ exports.createPages = async ({
         })
         break
       case "projects":
-        console.log(`Adding projects page ${node.frontmatter.slug}`)
         createPage({
           path: `projects/${node.frontmatter.slug}`,
           component: path.resolve(`./src/templates/project.jsx`),
