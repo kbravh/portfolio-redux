@@ -1,20 +1,17 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Img from 'gatsby-image'
 import { Helmet } from 'react-helmet'
-import { commaSeparatedList } from '../util'
-
-import './writing.css'
+import ProjectCard from '../components/project-card'
 
 export default ({ data }) => {
     const site = data.site.siteMetadata
     return (
         <>
-            <Helmet title="Writing - Karey Higuera" defer={false}>
+            <Helmet title="Projects - Karey Higuera" defer={false}>
                 <meta name="author" content="Karey Higuera" />
-                <meta property="og:url" content={`${site.siteUrl}/writing`} />
+                <meta property="og:url" content={`${site.siteUrl}/projects`} />
                 <meta property="og:type" content="article" />
-                <meta property="og:title" content="Writing - Karey Higuera" />
+                <meta property="og:title" content="Projects - Karey Higuera" />
                 <meta property="og:description" content="Technical guides for web and full-stack development." />
                 <meta property="og:image" content="" />
 
@@ -23,10 +20,10 @@ export default ({ data }) => {
                 <meta name="twitter:author" content="@kbravh" />
             </Helmet>
             <h1>Projects</h1>
-            <section className="writing-cards">
+            <section className="project-cards">
                 {data.allMdx.nodes.map(node => (
-                    <Link to={`/projects/` + node.frontmatter.slug} className="writing-link" key={node.id}>
-                        {node.frontmatter.title} - {node.frontmatter.date}
+                    <Link to={`/projects/${node.frontmatter.slug}`}  key={node.id} style={{textDecoration: 'none'}}>
+                      <ProjectCard project={node} />
                     </Link>
                 ))}
             </section>
@@ -45,6 +42,7 @@ export const query = graphql`
             id
             frontmatter {
                 title
+                description
                 date(formatString: "YYYY")
                 slug
                 description

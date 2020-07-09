@@ -1,0 +1,20 @@
+.project-card {
+    border-radius: 10px;
+    max-width: 590px;
+}
+
+.project-card h2 {
+    text-decoration: underline;
+}
+
+.project-tags {
+    margin-top: 10px;
+}
+
+.project-tag {
+    margin-right: 10px;
+    background-color: var(--brand-fg);
+    color: var(--brand-bg);
+    padding: 3px;
+    font-size: 16px;
+}
