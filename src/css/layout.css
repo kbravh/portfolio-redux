@@ -4,8 +4,7 @@
   --brand-action: #F87060;
 }
 
-html,
-body {
+html, body {
   margin: 0;
 }
 
@@ -18,17 +17,18 @@ html * {
 body::-webkit-scrollbar {
   width: 11px;
 }
+
 body::-webkit-scrollbar-track {
   background: var(--brand-bg);
 }
+
 body::-webkit-scrollbar-thumb {
-  background-color: var(--brand-action) ;
+  background-color: var(--brand-action);
   border-radius: 6px;
   border: 3px solid var(--brand-bg);
 }
 
-body,
-.gatsby-highlight pre {
+body, .gatsby-highlight pre {
   scrollbar-width: thin;
   scrollbar-color: var(--brand-bg);
 }
@@ -43,8 +43,8 @@ a:visited {
 }
 
 .left-sidebar {
+  display: none;
   position: fixed;
-  bottom: 5px;
 }
 
 .layout {
@@ -95,8 +95,9 @@ a:visited {
     padding-top: 0;
   }
   .left-sidebar {
-  left: 30px;
-  bottom: 30px;
+    display: block;
+    left: 30px;
+    bottom: 30px;
   }
   .logo-link-container {
     flex-direction: column;
@@ -119,7 +120,12 @@ a:visited {
 }
 
 /*Typography settings*/
-html {font-size: 112.5%;} /*18px*/
+
+html {
+  font-size: 112.5%;
+}
+
+/*18px*/
 
 body {
   background-color: white;
@@ -129,7 +135,9 @@ body {
   color: var(--brand-fg);
 }
 
-p {margin-bottom: 1.15rem;}
+p {
+  margin-bottom: 1.15rem;
+}
 
 h1, h2, h3, h4, h5 {
   margin: 2.75rem 0 1.05rem;
@@ -143,12 +151,22 @@ h1 {
   font-size: 1.802em;
 }
 
-h2 {font-size: 1.602em;}
+h2 {
+  font-size: 1.602em;
+}
 
-h3 {font-size: 1.424em;}
+h3 {
+  font-size: 1.424em;
+}
 
-h4 {font-size: 1.266em;}
+h4 {
+  font-size: 1.266em;
+}
 
-h5 {font-size: 1.125em;}
+h5 {
+  font-size: 1.125em;
+}
 
-small, .text_small {font-size: 0.889em;}
+small, .text_small {
+  font-size: 0.889em;
+}
