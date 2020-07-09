@@ -22,9 +22,11 @@ const Project = ({ data: { mdx: project, site } }) => {
         <meta property="og:image:height" content="700" />
         <meta property="og:locale" content={project.frontmatter.language} />
       </Helmet>
-      <h1>{project.frontmatter.title}</h1>
-      {project.frontmatter.link && <a href={project.frontmatter.link}><Icon icon="github" />Check out the project</a>}
-      {project.frontmatter.github && <a href={project.frontmatter.github}><Icon icon="globe" />Check out the code</a>}
+      <h1 className="project-title">{project.frontmatter.title}</h1>
+      <div className="project-links">
+        {project.frontmatter.link && <a href={project.frontmatter.link}><Icon icon="globe" /><span>Check out the project</span></a>}
+        {project.frontmatter.github && <a href={project.frontmatter.github}><Icon icon="github" /><span>Check out the code</span></a>}
+      </div>
       <section className="project-section">
         <MDXRenderer>{project.body}</MDXRenderer>
       </section>

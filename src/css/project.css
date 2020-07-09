@@ -1,3 +1,13 @@
-.project-header {
-  
+.project-title {
+  text-align: center;
+}
+
+.project-links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.project-links a {
+  display: flex;
+  align-items: center;
 }
