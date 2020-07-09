@@ -4,10 +4,19 @@
 
 .project-links {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .project-links a {
   display: flex;
   align-items: center;
+}
+
+@media screen and (min-width: 600px) {
+  .project-links {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }
