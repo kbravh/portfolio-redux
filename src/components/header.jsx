@@ -28,14 +28,16 @@ const listItemAnimations = {
     opacity: 1,
     transition: {
       y: { stiffness: 1000, velocity: -100 }
-    }
+    },
+    visibility: "visible"
   },
   closed: {
     x: "-100%",
     opacity: 0,
     transition: {
       y: { stiffness: 1000 }
-    }
+    },
+    visibility: "hidden" // this makes sure the elements are not focusable when the menu is closed
   }
 }
 
@@ -60,6 +62,10 @@ const Header = () => {
           animate={isMenuOpen ? "open" : "closed"}
           variants={menuAnimations}
         >
+          <button className="menu-button button" onClick={() => setMenuOpen(!isMenuOpen)}>
+            Menu
+            {isMenuOpen ? <Icon icon="chevrons-up"/> : <Icon icon="chevrons-down" />}
+          </button>
           <motion.ul className="navlinks"
             variants={listAnimations}
           >
@@ -68,10 +74,6 @@ const Header = () => {
             <motion.li variants={listItemAnimations}><Link to="/writing" onClick={() => setMenuOpen(false)}><Icon icon="pen" />Writing</Link></motion.li>
             <motion.li variants={listItemAnimations}><a download href={Resume} onClick={() => setMenuOpen(false)}><Icon icon="download" />Resume</a></motion.li>
           </motion.ul>
-          <button className="menu-button button" onClick={() => setMenuOpen(!isMenuOpen)}>
-            Menu
-            {isMenuOpen ? <Icon icon="chevrons-up"/> : <Icon icon="chevrons-down" />}
-          </button>
         </motion.nav>
       </>
     )
