@@ -49,11 +49,6 @@
   margin-bottom: 10px;
 }
 
-.mobile-menu .navlinks li:focus {
-  background: var(--brand-fg);
-  color: white;
-}
-
 .mobile-menu .navlinks svg {
   margin-right: 10px;
 }
