@@ -15,10 +15,12 @@ const menuAnimations = {
 
 const listAnimations = {
   open: {
-    transition: { staggerChildren: 0.07 }
+    transition: { staggerChildren: 0.07 },
+    visibility: "visible"
   },
   closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    transition: { staggerChildren: 0.05, staggerDirection: -1, when: "afterChildren" },
+    visibility: "hidden" // this makes sure the list items are not focusable when the menu is closed
   }
 }
 
@@ -29,7 +31,6 @@ const listItemAnimations = {
     transition: {
       y: { stiffness: 1000, velocity: -100 }
     },
-    visibility: "visible"
   },
   closed: {
     x: "-100%",
@@ -37,7 +38,6 @@ const listItemAnimations = {
     transition: {
       y: { stiffness: 1000 }
     },
-    visibility: "hidden" // this makes sure the elements are not focusable when the menu is closed
   }
 }
 
