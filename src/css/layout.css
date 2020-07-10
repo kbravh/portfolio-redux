@@ -33,6 +33,15 @@ body, .gatsby-highlight pre {
   scrollbar-color: var(--brand-bg);
 }
 
+.button {
+  border: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
 a:visited {
   color: inherit;
 }
