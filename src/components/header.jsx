@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
 import Icon from './icon'
@@ -43,7 +43,17 @@ const Header = () => {
   let { width } = useWindowSize()
   const [isMenuOpen, setMenuOpen] = useState(false)
 
-  if (width < 600) {
+  // we're using this to avoid issues with rehydration 
+  // (see https://joshwcomeau.com/react/the-perils-of-rehydration/)
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if(!hasMounted){
+    return null
+  } else if (width < 600) {
     return (
       <>
         <motion.nav className="mobile-menu"
