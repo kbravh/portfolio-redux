@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
 import Icon from './icon'
 import useWindowSize from '../hooks/useWindowSize'
+import useHasMounted from '../hooks/useHasMounted'
 
 import '../css/header.css'
 
@@ -47,11 +48,7 @@ const Header = () => {
 
   // we're using this to avoid issues with rehydration 
   // (see https://joshwcomeau.com/react/the-perils-of-rehydration/)
-  const [hasMounted, setHasMounted] = useState(false)
-
-  useEffect(() => {
-    setHasMounted(true)
-  }, [])
+  const hasMounted = useHasMounted()
 
   if(!hasMounted){
     return null

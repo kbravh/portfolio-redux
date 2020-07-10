@@ -98,6 +98,12 @@ a:visited {
   border-left: solid 2px var(--brand-action);
 }
 
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 @media screen and (min-width: 600px) {
   .layout {
     padding: 0px 75px 1.45rem;
