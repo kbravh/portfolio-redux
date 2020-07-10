@@ -10,12 +10,12 @@ import Resume from '../assets/Karey_Higuera_Resume.pdf'
 
 const menuAnimations = {
   open: { y: "-30%" },
-  closed: { y: "-85%", transition: {when: "afterChildren"} }
+  closed: { y: "-85%", transition: {delay: 0.2} }
 }
 
 const listAnimations = {
   open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.07 }
   },
   closed: {
     transition: { staggerChildren: 0.05, staggerDirection: -1 }
