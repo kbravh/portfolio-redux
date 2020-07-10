@@ -25,11 +25,10 @@ const Header = () => {
           variants={variants}
         >
           <ul className="navlinks">
-            {/* TODO - Close menu when clicking a link */}
-            <li><Link to="/"><Icon icon="home" />Home</Link></li>
-            <li><Link to='/projects'><Icon icon="wrench" />Projects</Link></li>
-            <li><Link to="/writing"><Icon icon="pen" />Writing</Link></li>
-            <li><a download href={Resume}><Icon icon="download" />Resume</a></li>
+            <li><Link to="/" onClick={() => setMenuOpen(false)}><Icon icon="home" />Home</Link></li>
+            <li><Link to='/projects' onClick={() => setMenuOpen(false)}><Icon icon="wrench" />Projects</Link></li>
+            <li><Link to="/writing" onClick={() => setMenuOpen(false)}><Icon icon="pen" />Writing</Link></li>
+            <li><a download href={Resume} onClick={() => setMenuOpen(false)}><Icon icon="download" />Resume</a></li>
           </ul>
           <button className="menu-button button" onClick={() => setMenuOpen(!isMenuOpen)}>
             Menu
