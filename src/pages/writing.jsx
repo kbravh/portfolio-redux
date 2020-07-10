@@ -49,7 +49,10 @@ const WritingCard = ({ post }) => {
 
 export const query = graphql`
   query {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {fields: {source: {eq: "writing"}}}
+    ) {
       totalCount
       edges {
         node {

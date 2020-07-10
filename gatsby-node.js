@@ -7,11 +7,12 @@ exports.createPages = async ({
   const result = await graphql(`
     query {
       allMdx {
-        edges {
-          node {
-            frontmatter {
-              slug
-            }
+        nodes {
+          frontmatter {
+            slug
+          }
+          fields {
+            source
           }
         }
       }
@@ -20,16 +21,28 @@ exports.createPages = async ({
   const {
     createPage
   } = actions
-  result.data.allMdx.edges.forEach(({
-    node
-  }) => {
-    createPage({
-      path: `writing/${node.frontmatter.slug}`,
-      component: path.resolve(`./src/templates/writing-post.jsx`),
-      context: {
-        slug: node.frontmatter.slug,
-        layout: "writing-post"
-      },
-    })
+  result.data.allMdx.nodes.forEach(node => {
+    switch (node.fields.source) {
+      case "writing":
+        createPage({
+          path: `writing/${node.frontmatter.slug}`,
+          component: path.resolve(`./src/templates/writing-post.jsx`),
+          context: {
+            slug: node.frontmatter.slug,
+            layout: "writing-post"
+          },
+        })
+        break
+      case "projects":
+        createPage({
+          path: `projects/${node.frontmatter.slug}`,
+          component: path.resolve(`./src/templates/project.jsx`),
+          context: {
+            slug: node.frontmatter.slug,
+            layout: "project"
+          },
+        })
+        break
+    }
   })
 }
