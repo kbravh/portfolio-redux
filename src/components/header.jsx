@@ -8,9 +8,35 @@ import '../css/header.css'
 
 import Resume from '../assets/Karey_Higuera_Resume.pdf'
 
-const variants = {
+const menuAnimations = {
   open: { y: "-30%" },
-  closed: { y: "-85%" }
+  closed: { y: "-85%", transition: {when: "afterChildren"} }
+}
+
+const listAnimations = {
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+  }
+}
+
+const listItemAnimations = {
+  open: {
+    x: "0%",
+    opacity: 1,
+    transition: {
+      y: { stiffness: 1000, velocity: -100 }
+    }
+  },
+  closed: {
+    x: "-100%",
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 }
+    }
+  }
 }
 
 const Header = () => {
@@ -22,14 +48,16 @@ const Header = () => {
       <>
         <motion.nav className="mobile-menu"
           animate={isMenuOpen ? "open" : "closed"}
-          variants={variants}
+          variants={menuAnimations}
         >
-          <ul className="navlinks">
-            <li><Link to="/" onClick={() => setMenuOpen(false)}><Icon icon="home" />Home</Link></li>
-            <li><Link to='/projects' onClick={() => setMenuOpen(false)}><Icon icon="wrench" />Projects</Link></li>
-            <li><Link to="/writing" onClick={() => setMenuOpen(false)}><Icon icon="pen" />Writing</Link></li>
-            <li><a download href={Resume} onClick={() => setMenuOpen(false)}><Icon icon="download" />Resume</a></li>
-          </ul>
+          <motion.ul className="navlinks"
+            variants={listAnimations}
+          >
+            <motion.li variants={listItemAnimations}><Link to="/" onClick={() => setMenuOpen(false)}><Icon icon="home" />Home</Link></motion.li>
+            <motion.li variants={listItemAnimations}><Link to='/projects' onClick={() => setMenuOpen(false)}><Icon icon="wrench" />Projects</Link></motion.li>
+            <motion.li variants={listItemAnimations}><Link to="/writing" onClick={() => setMenuOpen(false)}><Icon icon="pen" />Writing</Link></motion.li>
+            <motion.li variants={listItemAnimations}><a download href={Resume} onClick={() => setMenuOpen(false)}><Icon icon="download" />Resume</a></motion.li>
+          </motion.ul>
           <button className="menu-button button" onClick={() => setMenuOpen(!isMenuOpen)}>
             Menu
             {isMenuOpen ? <Icon icon="chevrons-up"/> : <Icon icon="chevrons-down" />}
