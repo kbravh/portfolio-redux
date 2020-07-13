@@ -37,6 +37,7 @@
 .writing-card-info {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
