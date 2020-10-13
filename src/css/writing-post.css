@@ -80,10 +80,6 @@
   border-radius: 0;
 }
 
-.unsplash-credit * {
-  color: var(--brand-bg);
-}
-
 /*Code Section styles*/
 .gatsby-highlight * {
   font-family: DankMono;
