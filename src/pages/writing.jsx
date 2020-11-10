@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Img from 'gatsby-image'
 import { Helmet } from 'react-helmet'
 import { commaSeparatedList } from '../util'
+import Icon from '../components/icon'
 
 import './writing.css'
 
@@ -37,12 +37,13 @@ export default ({ data }) => {
 const WritingCard = ({ post }) => {
   return (
     <article className="writing-card">
-      <Img fluid={post.frontmatter.banner.childImageSharp.fluid} objectFit="cover" />
-      <div className="writing-card-info">
-        <h4 className="writing-card-date">{post.frontmatter.date}</h4>
-        <h2 className="writing-card-title">{post.frontmatter.title}</h2>
-        <h4 className="writing-card-tags">{commaSeparatedList(post.frontmatter.tags)}</h4>
-      </div>
+        <div className="writing-card-info">
+          <div className="writing-card-title">{post.frontmatter.title}</div>
+          <div className="writing-card-tags">
+            {commaSeparatedList(post.frontmatter.tags)}
+          </div>
+        </div>
+        <Icon icon="arrow-right" />
     </article>
   )
 }
@@ -59,13 +60,6 @@ export const query = graphql`
           id
           frontmatter {
             title
-            banner {
-              childImageSharp {
-                fluid(quality:90) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
             date(formatString: "DD MMMM, YYYY")
             slug
             description

@@ -84,6 +84,10 @@ code::selection {
   color: var(--brand-fg);
 }
 
+blockquote {
+  border-left: 5px solid var(--brand-fg);
+}
+
 .gatsby-highlight pre::-webkit-scrollbar {
   width: 11px;
 }
