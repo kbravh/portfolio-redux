@@ -186,3 +186,12 @@ h5 {
 small, .text_small {
   font-size: 0.889em;
 }
+
+::selection {
+  background: var(--brand-action);
+  color: var(--brand-bg);
+}
+::-moz-selection {
+  background: var(--brand-action);
+  color: var(--brand-bg);
+}
