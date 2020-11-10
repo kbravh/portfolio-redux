@@ -5,7 +5,7 @@ date: 2020-10-04
 slug: avoid-losing-errors-in-bash-pipe
 language: en_US
 tags:
-  - bash
+  - Bash
 ---
 
 Have you ever wanted to string together some bash commands using pipes, but weren't sure how to not lose the error codes in the process?

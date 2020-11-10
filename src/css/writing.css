@@ -3,6 +3,25 @@
   color: inherit;
 }
 
+.writing-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.writing-tag {
+  border-radius: 2px;
+  border: 1px solid var(--brand-fg);
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.writing-tag:hover,
+.writing-tag.selected {
+  background-color: var(--brand-action);
+}
+
 .writing-cards {
   padding-bottom: 50px;
 }

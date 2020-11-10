@@ -1,13 +1,23 @@
-import React from "react"
+import React, {useState} from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import { commaSeparatedList } from '../util'
 import Icon from '../components/icon'
 
-import './writing.css'
+import '../css/writing.css'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
+  const tags = new Set(data.allMdx.nodes.flatMap(node => node.frontmatter.tags))
+  const [selectedTags, setSelectedTags] = useState(new Set())
+  let articles = selectedTags.size === 0 ? data.allMdx.nodes : data.allMdx.nodes.filter(node => {
+    for (const tag of node.frontmatter.tags) {
+      if (selectedTags.has(tag)){
+        return true
+      }
+    }
+    return false
+  })
   return (
     <>
       <Helmet title="Writing - Karey Higuera" defer={false}>
@@ -23,8 +33,19 @@ export default ({ data }) => {
         <meta name="twitter:author" content="@kbravh" />
       </Helmet>
       <h1>Writing</h1>
+      <p>Here you'll find all of my writing in a sort of digital garden. Some of these are still in the works, so bear with me as I tend to these articles. Feel free to reach out with any feedback!</p>
+      <div className="writing-tags">{[...tags].map(tag => (
+          <button className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`} onClick={() => {
+            let newTags = new Set([...selectedTags])
+            selectedTags.has(tag) ? newTags.delete(tag) : newTags.add(tag)
+            setSelectedTags(newTags)
+          }}>
+            {tag}
+          </button>
+        )
+      )}</div>
       <section className="writing-cards">
-        {data.allMdx.edges.map(({ node }) => (
+        {articles.map(node => (
           <Link to={`/writing/` + node.frontmatter.slug} className="writing-link" key={node.id}>
             <WritingCard post={node} />
           </Link>
@@ -55,16 +76,14 @@ export const query = graphql`
       filter: {fields: {source: {eq: "writing"}}}
     ) {
       totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
-            slug
-            description
-            tags
-          }
+      nodes {
+        id
+        frontmatter {
+          title
+          date(formatString: "DD MMMM, YYYY")
+          slug
+          description
+          tags
         }
       }
     }
