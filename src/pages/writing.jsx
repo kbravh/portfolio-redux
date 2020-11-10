@@ -10,6 +10,8 @@ export default ({ data }) => {
   const site = data.site.siteMetadata
   const tags = new Set(data.allMdx.nodes.flatMap(node => node.frontmatter.tags))
   const [selectedTags, setSelectedTags] = useState(new Set())
+  const [searchTerm, setSearchTerm] = useState("")
+
   let articles = selectedTags.size === 0 ? data.allMdx.nodes : data.allMdx.nodes.filter(node => {
     for (const tag of node.frontmatter.tags) {
       if (selectedTags.has(tag)){
@@ -18,6 +20,9 @@ export default ({ data }) => {
     }
     return false
   })
+
+  articles = articles.filter(article => article.frontmatter.title.toLowerCase().includes(searchTerm.toLowerCase()))
+
   return (
     <>
       <Helmet title="Writing - Karey Higuera" defer={false}>
@@ -35,7 +40,7 @@ export default ({ data }) => {
       <h1>Writing</h1>
       <p>Here you'll find all of my writing in a sort of digital garden. Some of these are still in the works, so bear with me as I tend to these articles. Feel free to reach out with any feedback!</p>
       <div className="writing-tags">{[...tags].map(tag => (
-          <button className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`} onClick={() => {
+          <button key={tag} className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`} onClick={() => {
             let newTags = new Set([...selectedTags])
             selectedTags.has(tag) ? newTags.delete(tag) : newTags.add(tag)
             setSelectedTags(newTags)
@@ -44,12 +49,17 @@ export default ({ data }) => {
           </button>
         )
       )}</div>
+      <div className="writing-search">
+        <Icon icon="search" />
+        <input type="text" onChange={e => setSearchTerm(e.target.value)} value={searchTerm} placeholder="Type here to filter posts" />
+      </div>
       <section className="writing-cards">
         {articles.map(node => (
           <Link to={`/writing/` + node.frontmatter.slug} className="writing-link" key={node.id}>
             <WritingCard post={node} />
           </Link>
         ))}
+        {articles.length === 0 && "Oops, nothing seems to match!"}
       </section>
     </>
   )

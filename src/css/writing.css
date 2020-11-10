@@ -22,6 +22,21 @@
   background-color: var(--brand-action);
 }
 
+.writing-search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.writing-search svg {
+  margin-right: 5px;
+}
+
+.writing-search input {
+  width: 100%;
+}
+
 .writing-cards {
   padding-bottom: 50px;
 }
