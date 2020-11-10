@@ -2,6 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import {commaSeparatedList} from '../util'
+import Icon from '../components/icon'
 
 import '../css/writing-post.css'
 
@@ -29,8 +31,12 @@ export default ({ data }) => {
         <div className="writing-banner">
           <div className="writing-banner-details">
             <h1>{post.frontmatter.title}</h1>
-            <div className="writing-banner-footer">
+            <div className="writing-banner-date">
               <h4>{post.frontmatter.date}</h4>
+            </div>
+            <div className="writing-banner-tags">
+              <Icon icon="tag" />
+              {commaSeparatedList(post.frontmatter.tags)}
             </div>
           </div>
         </div>
@@ -54,6 +60,7 @@ export const query = graphql`
         description
         slug
         language
+        tags
       }
     }
     site {

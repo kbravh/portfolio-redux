@@ -6,7 +6,7 @@ slug: creating-a-circleci-orb
 banner: ./jamie-street-vIP7Bgl2Qh8-unsplash.jpg
 language: en_US
 tags:
-  - circleci
+  - Circle CI
 ---
 
 A guide for creating a CircleCI orb with the newly released [CircleCI Orb Development Kit](https://circleci.com/docs/2.0/orb-author/#orb-development-kit).

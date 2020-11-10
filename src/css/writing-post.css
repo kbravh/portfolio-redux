@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.writing-banner-date h4 {
+  margin-top: 0px;
+}
+
 .writing-banner-header {
   display: flex;
   max-width: 90%;
@@ -42,6 +46,11 @@
 .writing-banner-details h4 {
   font-family: 'Unica One';
   font-size: 1.3rem;
+}
+
+.writing-banner-tags svg {
+  transform: translateY(5px);
+  margin-right: 5px;
 }
 
 .blog-section {
