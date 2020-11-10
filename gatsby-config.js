@@ -66,11 +66,6 @@ module.exports = {
                             inlineCodeMarker: `~`,
                             // Customize the prompt used in shell output
                             // Values below are default
-                            prompt: {
-                                user: "kbravh",
-                                host: "home",
-                                global: true,
-                            }
                         },
                     },
                 ],
