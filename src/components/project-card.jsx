@@ -5,7 +5,7 @@ import '../css/project-card.css'
 const ProjectCard = ({ project }) => {
     return (
         <div className="project-card">
-            <div class="project-logo">
+            <div className="project-logo">
                 <img src={`logos/${project.frontmatter.slug}.png`} alt={`${project.frontmatter.title} logo`}/>
             </div>
             <div className="project-info">
