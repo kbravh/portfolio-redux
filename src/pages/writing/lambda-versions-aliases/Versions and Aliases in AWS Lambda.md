@@ -3,7 +3,6 @@ title: Versions and Aliases in AWS Lambda
 description: Create versions and aliases of Lambda functions in order to test your changes in different environments or stages without affection your live production code.
 date: 2020-06-09
 slug: lambda-versions-aliases
-banner: ./brett-jordan-B9N22h2s0to-unsplash.jpg
 language: en_US
 tags:
   - AWS

@@ -3,7 +3,6 @@ title: Automatically Adjust AWS Cron Events for Daylight Savings Time
 description: Adjust AWS Cron Events using Lambda so that Daylight Savings Time won't affect your services.
 date: 2020-04-21
 slug: adjust-cron-event-for-dst
-banner: ./aron-visuals-BXOXnQ26B7o-unsplash.jpg
 language: en_US
 tags:
   - AWS
@@ -308,5 +307,3 @@ Want to dig a bit deeper and learn a bit more? Here are some useful links:
 [Schedule Expressions for Rules | Amazon Web Services](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 
 [Quick and Simple Cron Expression Editor | crontab guru](https://crontab.guru/)
-
-<!-- Hero photo by Aron Visuals https://unsplash.com/@aronvisuals -->

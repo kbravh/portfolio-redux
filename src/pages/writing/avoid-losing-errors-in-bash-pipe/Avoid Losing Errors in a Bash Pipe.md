@@ -3,7 +3,6 @@ title: Avoid Losing Errors in a Bash Pipe
 description: Pass error codes through a bash pipe to when chaining commands.
 date: 2020-10-04
 slug: avoid-losing-errors-in-bash-pipe
-banner: ./valentin-petkov-z06oDT-8pKQ-unsplash.jpg
 language: en_US
 tags:
   - bash
@@ -42,5 +41,3 @@ Luckily, there's a handy option for this.
 By running `set -o pipefail` in our script before our pipe command, bash will finish executing the entire pipe and throw the error code of the right-most error that occurs, if any. So if `npx rome check` fails, that error code will still be thrown even though `cat` succeeds.
 
 If you want to get some more in depth information and see some other good options to set for your bash scripts, check out [vaneyckt's great article](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/).
-
-<!-- Hero photo by Valentin Petkov https://unsplash.com/@thefreak1337 -->
