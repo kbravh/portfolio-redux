@@ -5,10 +5,7 @@ import Icon from './icon'
 
 import '../css/layout.css'
 
-const Layout = ({ children, pageContext }) => {
-  if (pageContext.layout === "writing-post") {
-    return <>{children}</>
-  }
+const Layout = ({ children }) => {
   return (
     <>
       <Helmet title="Karey Higuera - Online Portfolio" />

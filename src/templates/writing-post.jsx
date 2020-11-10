@@ -1,6 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import Img from "gatsby-image";
+import { graphql } from "gatsby"
 import { Helmet } from "react-helmet";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
@@ -20,20 +19,15 @@ export default ({ data }) => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.frontmatter.description || post.excerpt} />
-        <meta property="og:image" content={`${site.siteUrl}${post.frontmatter.banner.publicURL}`} />
+        {/* <meta property="og:image" content={`${site.siteUrl}${post.frontmatter.banner.publicURL}`} />
         <meta property="og:image:width" content="1050" />
-        <meta property="og:image:height" content="700" />
+        <meta property="og:image:height" content="700" /> */}
         <meta property="og:locale" content={post.frontmatter.language} />
       </Helmet>
 
       <header>
         <div className="writing-banner">
-          <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
           <div className="writing-banner-details">
-            <div className="writing-banner-header">
-              <Link to="/">Home</Link>
-              <Link to="/writing">Writing</Link>
-            </div>
             <h1>{post.frontmatter.title}</h1>
             <div className="writing-banner-footer">
               <h4>{post.frontmatter.date}</h4>
@@ -60,14 +54,6 @@ export const query = graphql`
         description
         slug
         language
-        banner {
-          publicURL
-          childImageSharp {
-            fluid(maxWidth: 700, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
       }
     }
     site {

@@ -1,16 +1,5 @@
 .writing-banner {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  background-color: var(--brand-fg);
-}
-
-.writing-banner .gatsby-image-wrapper {
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
-  opacity: 0.5;
-  z-index: 3;
+  margin-top: 20px;
 }
 
 .writing-banner-header {
@@ -53,10 +42,6 @@
 .writing-banner-details h4 {
   font-family: 'Unica One';
   font-size: 1.3rem;
-}
-
-.writing-banner * {
-  color: var(--brand-bg);
 }
 
 .blog-section {
