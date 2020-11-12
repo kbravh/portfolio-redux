@@ -66,12 +66,30 @@ export default ({ data }) => {
 }
 
 const WritingCard = ({ post }) => {
+  let stageIcon = (() => {
+    let stage = post.frontmatter.stage
+    switch (stage) {
+      case 1:
+        return "🌱"
+      case 2:
+        return "🌿"
+      case 3:
+        return "🌲"
+      default:
+        return "🌱"
+    }
+  })()
   return (
     <article className="writing-card">
-        <div className="writing-card-info">
-          <div className="writing-card-title">{post.frontmatter.title}</div>
-          <div className="writing-card-tags">
-            {commaSeparatedList(post.frontmatter.tags)}
+        <div style={{display: "flex", alignContent: "center"}}>
+          <div className="writing-stage">
+            {stageIcon}
+          </div>
+          <div className="writing-card-info">
+            <div className="writing-card-title">{post.frontmatter.title}</div>
+            <div className="writing-card-tags">
+              {commaSeparatedList(post.frontmatter.tags)}
+            </div>
           </div>
         </div>
         <Icon icon="arrow-right" />
@@ -94,6 +112,7 @@ export const query = graphql`
           slug
           description
           tags
+          stage
         }
       }
     }

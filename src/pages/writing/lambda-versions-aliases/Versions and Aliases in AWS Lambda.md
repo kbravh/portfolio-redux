@@ -4,6 +4,7 @@ description: Create versions and aliases of Lambda functions in order to test yo
 date: 2020-06-09
 slug: lambda-versions-aliases
 language: en_US
+stage: 3
 tags:
   - AWS
   - Lambda

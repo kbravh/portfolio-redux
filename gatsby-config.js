@@ -72,20 +72,12 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-prefetch-google-fonts`,
+            resolve: `gatsby-plugin-web-font-loader`,
             options: {
-                fonts: [{
-                        family: `Odibee Sans`,
-                    },
-                    {
-                        family: `Unica One`,
-                        // text: ` JAaNnuryFebMOchpilgStcvD1234567890,`
-                    },
-                    {
-                        family: `Andika`,
-                    }
-                ],
-            },
+                google: {
+                    families: ['Odibee Sans', 'Andika', 'Dosis']
+                }
+            }
         },
         {
             resolve: "gatsby-plugin-web-font-loader",

@@ -65,6 +65,10 @@
   transition: all ease-in-out 0.2s;
 }
 
+.writing-stage {
+  margin-right: 5px;
+}
+
 .writing-card-info {
   display: flex;
   flex-direction: column;
@@ -77,7 +81,7 @@
 }
 
 .writing-card-tags {
-  font-family: 'Unica One';
+  font-family: 'Dosis';
 }
 
 .writing-card-tags svg {
