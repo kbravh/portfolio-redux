@@ -4,6 +4,7 @@ description: Adjust AWS Cron Events using Lambda so that Daylight Savings Time w
 date: 2020-04-21
 slug: adjust-cron-event-for-dst
 language: en_US
+stage: 3
 tags:
   - AWS
   - Lambda

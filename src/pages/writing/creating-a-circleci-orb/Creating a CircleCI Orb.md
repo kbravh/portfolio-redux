@@ -4,6 +4,7 @@ description: Create a CircleCI orb using the new orb development kit.
 date: 2020-10-05
 slug: creating-a-circleci-orb
 language: en_US
+stage: 3
 tags:
   - Circle CI
 ---

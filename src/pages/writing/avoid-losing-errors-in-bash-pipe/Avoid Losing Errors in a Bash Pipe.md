@@ -4,6 +4,7 @@ description: Pass error codes through a bash pipe to when chaining commands.
 date: 2020-10-04
 slug: avoid-losing-errors-in-bash-pipe
 language: en_US
+stage: 3
 tags:
   - Bash
 ---
