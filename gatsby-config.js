@@ -11,14 +11,14 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `writing`,
-                path: `${__dirname}/src/pages/writing`,
+                path: `${__dirname}/src/data/writing`,
             },
         },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `projects`,
-                path: `${__dirname}/src/pages/projects`,
+                path: `${__dirname}/src/data/projects`,
             },
         },
         {
