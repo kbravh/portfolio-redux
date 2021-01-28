@@ -107,6 +107,5 @@ module.exports = {
                 icon: `src/assets/favicon.png`
             },
         },
-        `gatsby-plugin-offline`,
     ]
 }
