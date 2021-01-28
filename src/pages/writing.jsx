@@ -9,9 +9,12 @@ import '../css/writing.css'
 export default ({ data }) => {
   const site = data.site.siteMetadata
   // Filter tags based on showNonCoding
-  const tags = new Set(data.allMdx.nodes.flatMap(node => node.frontmatter.tags))
   const [selectedTags, setSelectedTags] = useState(new Set())
   const [showNonCoding, setShowNonCoding] = useState(false)
+  // let tags = new Set(data.allMdx.nodes.flatMap(article => article.frontmatter.tags))
+  let tags = new Set(data.allMdx.nodes
+      .filter(article => showNonCoding ? true : !article.frontmatter.noncoding)
+      .flatMap(article => article.frontmatter.tags))
   const [searchTerm, setSearchTerm] = useState("")
 
   // Filter the articles based on those that have at least one of the selected tags
