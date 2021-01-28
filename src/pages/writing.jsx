@@ -8,10 +8,13 @@ import '../css/writing.css'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
+  // Filter tags based on showNonCoding
   const tags = new Set(data.allMdx.nodes.flatMap(node => node.frontmatter.tags))
   const [selectedTags, setSelectedTags] = useState(new Set())
+  const [showNonCoding, setShowNonCoding] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
 
+  // Filter the articles based on those that have at least one of the selected tags
   let articles = selectedTags.size === 0 ? data.allMdx.nodes : data.allMdx.nodes.filter(node => {
     for (const tag of node.frontmatter.tags) {
       if (selectedTags.has(tag)){
@@ -21,6 +24,14 @@ export default ({ data }) => {
     return false
   })
 
+  // filter the articles based on the non-coding filter
+  // If showNonCoding, show all articles.
+  // Otherwise filter out any if they have the attribute "noncoding" in frontmatter
+  articles = showNonCoding
+    ? articles
+    : articles.filter(article => !article.frontmatter.noncoding)
+
+  // filter the articles based on the search term
   articles = articles.filter(article => article.frontmatter.title.toLowerCase().includes(searchTerm.toLowerCase()))
 
   return (
@@ -39,26 +50,52 @@ export default ({ data }) => {
       </Helmet>
       <h1>Writing</h1>
       <p>Here you'll find all of my writing in a sort of digital garden. Some of these are still in the works, so bear with me as I tend to these articles. Feel free to reach out with any feedback!</p>
-      <div className="writing-tags">{[...tags].map(tag => (
-          <button key={tag} className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`} onClick={() => {
-            let newTags = new Set([...selectedTags])
-            selectedTags.has(tag) ? newTags.delete(tag) : newTags.add(tag)
-            setSelectedTags(newTags)
-          }}>
+
+      <label htmlFor="non-code">
+        Show non-coding articles
+        <input
+          type="checkbox"
+          name="non-code"
+          id="non-code"
+          onChange={() => setShowNonCoding(!showNonCoding)}
+        />
+      </label>
+
+      {/* spread the Set of tags into an array and create buttons */}
+      <div className="writing-tags">
+        {[...tags].map(tag => (
+          <button
+            key={tag}
+            className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`}
+            onClick={() => {
+              // create a new Set and update the state when a tag is clicked
+              let newTags = new Set([...selectedTags])
+              selectedTags.has(tag) ? newTags.delete(tag) : newTags.add(tag)
+              setSelectedTags(newTags)
+            }}
+          >
             {tag}
           </button>
-        )
-      )}</div>
+        ))}
+      </div>
+
+      {/* Update the search term when anything is typed */}
       <div className="writing-search">
         <Icon icon="search" />
         <input type="text" onChange={e => setSearchTerm(e.target.value)} value={searchTerm} placeholder="Type here to filter posts" />
       </div>
+
+      {/* Map over the filtered articles list and build article cards*/}
       <section className="writing-cards">
         {articles.map(node => (
-          <Link to={`/writing/` + node.frontmatter.slug} className="writing-link" key={node.id}>
+          <Link
+            to={`/writing/` + node.frontmatter.slug}
+            className="writing-link" key={node.id}
+          >
             <WritingCard post={node} />
           </Link>
         ))}
+        {/* If nothing matches our filters, show a small message */}
         {articles.length === 0 && "Oops, nothing seems to match!"}
       </section>
     </>
@@ -110,9 +147,9 @@ export const query = graphql`
           title
           date(formatString: "DD MMMM, YYYY")
           slug
-          description
           tags
           stage
+          noncoding
         }
       }
     }

@@ -3,6 +3,10 @@
   color: inherit;
 }
 
+#non-code {
+  margin-bottom: 20px;
+}
+
 .writing-tags {
   display: flex;
   flex-wrap: wrap;
