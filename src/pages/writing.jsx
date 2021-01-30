@@ -10,7 +10,7 @@ export default ({ data }) => {
   const site = data.site.siteMetadata
   // Filter tags based on showNonCoding
   const [selectedTags, setSelectedTags] = useState(new Set())
-  const [showNonCoding, setShowNonCoding] = useState(false)
+  const [showNonCoding, setShowNonCoding] = useState(true)
   // let tags = new Set(data.allMdx.nodes.flatMap(article => article.frontmatter.tags))
   let tags = new Set(data.allMdx.nodes
       .filter(article => showNonCoding ? true : !article.frontmatter.noncoding)
@@ -60,6 +60,7 @@ export default ({ data }) => {
           type="checkbox"
           name="non-code"
           id="non-code"
+          checked={showNonCoding}
           onChange={() => setShowNonCoding(!showNonCoding)}
         />
       </label>
