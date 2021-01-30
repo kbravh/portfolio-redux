@@ -6,6 +6,7 @@ module.exports = {
         siteUrl: `https://kbravh.dev`
     },
     plugins: [
+        `gatsby-plugin-netlify`,
         `gatsby-plugin-mdx-source-name`,
         {
             resolve: `gatsby-source-filesystem`,
