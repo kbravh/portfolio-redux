@@ -8,12 +8,10 @@ import '../css/writing.css'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
-  // Filter tags based on showNonCoding
   const [selectedTags, setSelectedTags] = useState(new Set())
-  const [showNonCoding, setShowNonCoding] = useState(true)
-  // let tags = new Set(data.allMdx.nodes.flatMap(article => article.frontmatter.tags))
+  const [onlyCoding, setOnlyCoding] = useState(false)
   let tags = new Set(data.allMdx.nodes
-      .filter(article => showNonCoding ? true : !article.frontmatter.noncoding)
+      .filter(article => onlyCoding ? !article.frontmatter.noncoding : true)
       .flatMap(article => article.frontmatter.tags))
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -27,12 +25,10 @@ export default ({ data }) => {
     return false
   })
 
-  // filter the articles based on the non-coding filter
-  // If showNonCoding, show all articles.
-  // Otherwise filter out any if they have the attribute "noncoding" in frontmatter
-  articles = showNonCoding
-    ? articles
-    : articles.filter(article => !article.frontmatter.noncoding)
+  // filter the articles based on the only-coding filter
+  articles = onlyCoding
+    ? articles.filter(article => !article.frontmatter.noncoding)
+    : articles
 
   // filter the articles based on the search term
   articles = articles.filter(article => article.frontmatter.title.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -55,13 +51,13 @@ export default ({ data }) => {
       <p>Here you'll find all of my writing in a sort of digital garden. Some of these are still in the works, so bear with me as I tend to these articles. Feel free to reach out with any feedback!</p>
 
       <label htmlFor="non-code">
-        Show non-coding articles
+        Only show coding articles
         <input
           type="checkbox"
           name="non-code"
           id="non-code"
-          checked={showNonCoding}
-          onChange={() => setShowNonCoding(!showNonCoding)}
+          checked={onlyCoding}
+          onChange={() => setOnlyCoding(!onlyCoding)}
         />
       </label>
 
