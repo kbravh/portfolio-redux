@@ -81,8 +81,16 @@ export default ({ data }) => {
 
       {/* Update the search term when anything is typed */}
       <div className="writing-search">
-        <Icon icon="search" />
-        <input type="text" onChange={e => setSearchTerm(e.target.value)} value={searchTerm} placeholder="Type here to filter posts" />
+        <label htmlFor="search"><Icon icon="search" />
+          <input
+            type="search"
+            name="search"
+            onChange={e => setSearchTerm(e.target.value)}
+            value={searchTerm}
+            placeholder="Type here to filter posts"
+            aria-label="Filter the article titles"
+          />
+        </label>
       </div>
 
       {/* Map over the filtered articles list and build article cards*/}
@@ -91,6 +99,7 @@ export default ({ data }) => {
           <Link
             to={`/writing/` + node.frontmatter.slug}
             className="writing-link" key={node.id}
+            ariaLabel={node.frontmatter.title}
           >
             <WritingCard post={node} />
           </Link>
