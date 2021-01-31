@@ -1,10 +1,11 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
-import ProjectCard from '../components/project-card'
+import ProjectCard from '../../components/project-card'
 
 export default ({ data }) => {
     const site = data.site.siteMetadata
+    const nodes = data.allProject.nodes
     return (
         <>
             <Helmet title="Projects - Karey Higuera" defer={false}>
@@ -21,8 +22,12 @@ export default ({ data }) => {
             </Helmet>
             <h1>Projects</h1>
             <section className="project-cards">
-                {data.allMdx.nodes.map(node => (
-                    <Link to={`/projects/${node.frontmatter.slug}`}  key={node.id} style={{textDecoration: 'none'}}>
+                {nodes.map(node => (
+                    <Link
+                      to={node.gatsbyPath}
+                      key={node.id}
+                      style={{textDecoration: 'none'}}
+                    >
                       <ProjectCard project={node} />
                     </Link>
                 ))}
@@ -33,24 +38,20 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allMdx(
-        sort: { fields: [frontmatter___date], order: DESC }
-        filter: {fields: {source: {eq: "projects"}}}
-    ) {
-      totalCount
-        nodes {
-            id
-            frontmatter {
-                title
-                description
-                date(formatString: "YYYY")
-                slug
-                description
-                link
-                github
-                tags
-            }
+    allProject(sort: { fields: [frontmatter___date], order: DESC }) {
+      nodes {
+        gatsbyPath(filePath: "/projects/{Project.name}")
+        id
+        frontmatter {
+          title
+          description
+          date(formatString: "YYYY")
+          link
+          github
+          tags
+          logo
         }
+      }
     }
     site {
       siteMetadata {

@@ -2,7 +2,6 @@
 title: Switch Audio Outputs with a Hotkey
 description: Create a shell script to switch audio output devices on Linux systems.
 date: 2020-09-11
-slug: switch-audio-outputs-with-a-hotkey
 language: en_US
 stage: 1
 tags:

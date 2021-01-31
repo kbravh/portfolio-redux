@@ -2,13 +2,13 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import {commaSeparatedList} from '../util'
-import Icon from '../components/icon'
+import {commaSeparatedList} from '../../util'
+import Icon from '../../components/icon'
 
-import '../css/writing-post.css'
+import '../../css/writing-post.css'
 
 export default ({ data }) => {
-  const post = data.mdx
+  const post = data.blogPost
   const site = data.site.siteMetadata
   return (
     <>
@@ -17,7 +17,7 @@ export default ({ data }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@kbravh" />
         <meta name="author" content="Karey Higuera <@kbravh>" />
-        <meta property="og:url" content={`${site.siteUrl}/writing/${post.frontmatter.slug}`} />
+        <meta property="og:url" content={`${site.siteUrl}${post.gatsbyPath}`} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.frontmatter.description || post.excerpt} />
@@ -43,24 +43,28 @@ export default ({ data }) => {
       </header>
 
       <section className="blog-section">
-        <MDXRenderer>{post.body}</MDXRenderer>
+        <MDXRenderer>{post.parent.body}</MDXRenderer>
       </section>
     </>
   )
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    mdx(frontmatter: { slug: { eq: $slug } }) {
-      body
-      excerpt
+  query($id: String!) {
+    blogPost(id:{ eq: $id }) {
+      gatsbyPath(filePath: "/writing/{BlogPost.name}")
       frontmatter {
         title
         date(formatString: "DD MMMM, YYYY")
         description
-        slug
         language
         tags
+      }
+      parent {
+        ... on Mdx {
+          body
+          excerpt
+        }
       }
     }
     site {

@@ -1,22 +1,24 @@
 import React, {useState} from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
-import { commaSeparatedList } from '../util'
-import Icon from '../components/icon'
+import { commaSeparatedList } from '../../util'
+import Icon from '../../components/icon'
 
-import '../css/writing.css'
+import '../../css/writing.css'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
+  const nodes = data.allBlogPost.nodes
+
   const [selectedTags, setSelectedTags] = useState(new Set())
   const [onlyCoding, setOnlyCoding] = useState(false)
-  let tags = new Set(data.allMdx.nodes
+  let tags = new Set(nodes
       .filter(article => onlyCoding ? !article.frontmatter.noncoding : true)
       .flatMap(article => article.frontmatter.tags))
   const [searchTerm, setSearchTerm] = useState("")
 
   // Filter the articles based on those that have at least one of the selected tags
-  let articles = selectedTags.size === 0 ? data.allMdx.nodes : data.allMdx.nodes.filter(node => {
+  let articles = selectedTags.size === 0 ? nodes : nodes.filter(node => {
     for (const tag of node.frontmatter.tags) {
       if (selectedTags.has(tag)){
         return true
@@ -97,8 +99,9 @@ export default ({ data }) => {
       <section className="writing-cards">
         {articles.map(node => (
           <Link
-            to={`/writing/` + node.frontmatter.slug}
-            className="writing-link" key={node.id}
+            to={node.gatsbyPath}
+            className="writing-link"
+            key={node.id}
             ariaLabel={node.frontmatter.title}
           >
             <WritingCard post={node} />
@@ -145,17 +148,13 @@ const WritingCard = ({ post }) => {
 
 export const query = graphql`
   query {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: {fields: {source: {eq: "writing"}}}
-    ) {
-      totalCount
+    allBlogPost(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
+        gatsbyPath(filePath: "/writing/{BlogPost.name}")
         id
         frontmatter {
           title
           date(formatString: "DD MMMM, YYYY")
-          slug
           tags
           stage
           noncoding

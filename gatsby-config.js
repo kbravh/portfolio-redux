@@ -7,7 +7,6 @@ module.exports = {
     },
     plugins: [
         `gatsby-plugin-netlify`,
-        `gatsby-plugin-mdx-source-name`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -32,7 +31,6 @@ module.exports = {
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
-        `gatsby-plugin-mdx-source-name`,
         {
             resolve: `gatsby-plugin-mdx`,
             options: {
@@ -44,8 +42,7 @@ module.exports = {
                             // the content container as this plugin uses this as the
                             // base for generating different widths of each image.
                             maxWidth: 590,
-                            disableBgImageOnAlpha: true,
-                            // tracedSVG: true
+                            disableBgImageOnAlpha: true
                         },
                     },
                     {

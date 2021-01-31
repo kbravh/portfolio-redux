@@ -2,8 +2,8 @@
 title: Tweet to Markdown
 description: A Node.js CLI to convert tweets to Markdown.
 date: 2020-09-09
-slug: tweet-to-markdown
-link: 
+logo: tweet-to-markdown
+link:
 github: https://github.com/kbravh/tweet-to-markdown
 language: en_US
 tags:

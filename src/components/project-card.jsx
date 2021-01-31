@@ -6,7 +6,7 @@ const ProjectCard = ({ project }) => {
     return (
         <div className="project-card">
             <div className="project-logo">
-                <img src={`logos/${project.frontmatter.slug}.png`} alt={`${project.frontmatter.title} logo`}/>
+                <img src={`logos/${project.frontmatter.logo}.png`} alt={`${project.frontmatter.title} logo`}/>
             </div>
             <div className="project-info">
                 <h2>{project.frontmatter.title}</h2>

@@ -2,7 +2,6 @@
 title: The Difference Between apt and apt-get
 description: A quick review of the difference between the two install tools for Debian.
 date: 2021-01-27
-slug: difference-between-apt-and-apt-get
 language: en_US
 stage: 1
 tags:

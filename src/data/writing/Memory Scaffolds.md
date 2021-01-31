@@ -2,7 +2,6 @@
 title: Memory Scaffolds
 description: Memory scaffolds are a representation of how memory works.
 date: 2021-01-27
-slug: memory-scaffolds
 language: en_US
 stage: 1
 noncoding: true

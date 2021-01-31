@@ -2,11 +2,11 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from "react-helmet";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import Icon from '../components/icon'
+import Icon from '../../components/icon'
 
-import '../css/project.css'
+import '../../css/project.css'
 
-const Project = ({ data: { mdx: project, site } }) => {
+const Project = ({ data: { project, site } }) => {
   return (
     <>
       <Helmet title={project.frontmatter.title} defer={false}>
@@ -14,7 +14,7 @@ const Project = ({ data: { mdx: project, site } }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@kbravh" />
         <meta name="author" content="Karey Higuera <@kbravh>" />
-        <meta property="og:url" content={`${site.siteMetadata.siteUrl}/projects/${project.frontmatter.slug}`} />
+        <meta property="og:url" content={`${site.siteMetadata.siteUrl}${project.gatsbyPath}`} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={project.frontmatter.title} />
         <meta property="og:description" content={project.frontmatter.description} />
@@ -28,7 +28,7 @@ const Project = ({ data: { mdx: project, site } }) => {
         {project.frontmatter.github && <a href={project.frontmatter.github}><Icon icon="github" /><span>Check out the code</span></a>}
       </div>
       <section className="project-section">
-        <MDXRenderer>{project.body}</MDXRenderer>
+        <MDXRenderer>{project.parent.body}</MDXRenderer>
       </section>
     </>
   )
@@ -37,18 +37,22 @@ const Project = ({ data: { mdx: project, site } }) => {
 export default Project
 
 export const query = graphql`
-  query($slug: String!) {
-    mdx(frontmatter: { slug: { eq: $slug } }) {
-      body
+  query($id: String!) {
+    project(id: { eq: $id }) {
+      gatsbyPath(filePath: "/projects/{Project.name}")
       frontmatter {
         title
         description
         date(formatString: "YYYY")
-        slug
         description
         link
         github
         tags
+      }
+      parent {
+        ... on Mdx {
+          body
+        }
       }
     }
     site {

@@ -2,7 +2,6 @@
 title: Mnemonics
 description: Mnemonics are a useful tool for memorization.
 date: 2021-01-30
-slug: mnemonics
 language: en_US
 stage: 1
 noncoding: true
