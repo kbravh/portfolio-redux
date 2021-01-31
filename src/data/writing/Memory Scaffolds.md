@@ -5,7 +5,7 @@ date: 2021-01-27
 slug: memory-scaffolds
 language: en_US
 stage: 1
-noncoding: "true"
+noncoding: true
 tags:
   - Memory
 ---
