@@ -8,7 +8,10 @@ import '../css/layout.css'
 const Layout = ({ children }) => {
   return (
     <>
-      <Helmet title="Karey Higuera - Online Portfolio" />
+      <Helmet defer={false} htmlAttributes={{lang: 'en'}}>
+        <title>Karey Higuera - Online Portfolio</title>
+        <meta name="author" content="Karey Higuera" />
+      </Helmet>
       <Header />
       <div className="layout-wrapper">
         <div className="left-sidebar">

@@ -13,8 +13,6 @@ export default ({ data }) => {
   return (
     <>
       <Helmet defer={false}>
-        <title>Karey Higuera - Online Portfolio</title>
-        <meta name="author" content="Karey Higuera" />
         <meta property="og:url" content={site.siteUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Karey Higuera" />
