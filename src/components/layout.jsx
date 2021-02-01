@@ -17,22 +17,22 @@ const Layout = ({ children }) => {
         <div className="left-sidebar">
           <ul className="logo-link-container">
             <li>
-              <a href="https://github.com/kbravh" alt="GitHub" ariaLabel="GitHub">
+              <a href="https://github.com/kbravh" alt="GitHub" aria-label="GitHub">
                 <Icon icon="github" />
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/kbravh/" alt="LinkedIn" ariaLabel="LinkedIn">
+              <a href="https://www.linkedin.com/in/kbravh/" alt="LinkedIn" aria-label="LinkedIn">
                 <Icon icon="linkedin" />
               </a>
             </li>
             <li>
-              <a href="https://codepen.io/kbravh" alt="CodePen" ariaLabel="CodePen">
+              <a href="https://codepen.io/kbravh" alt="CodePen" aria-label="CodePen">
                 <Icon icon="codepen" />
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/kbravh" alt="Twitter" ariaLabel="Twitter">
+              <a href="https://twitter.com/kbravh" alt="Twitter" aria-label="Twitter">
                 <Icon icon="twitter" />
               </a>
             </li>

@@ -83,7 +83,8 @@ export default ({ data }) => {
 
       {/* Update the search term when anything is typed */}
       <div className="writing-search">
-        <label htmlFor="search"><Icon icon="search" />
+        <Icon icon="search" />
+        <label htmlFor="search" style={{width: '100%'}}>
           <input
             type="search"
             name="search"
@@ -102,7 +103,7 @@ export default ({ data }) => {
             to={node.gatsbyPath}
             className="writing-link"
             key={node.id}
-            ariaLabel={node.frontmatter.title}
+            aria-label={node.frontmatter.title}
           >
             <WritingCard post={node} />
           </Link>
