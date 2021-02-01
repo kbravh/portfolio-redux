@@ -31,42 +31,50 @@ module.exports = {
         `gatsby-plugin-sitemap`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
+        `gatsby-plugin-catch-links`,
         {
             resolve: `gatsby-plugin-mdx`,
             options: {
                 extensions: [`.mdx`, `.md`],
                 gatsbyRemarkPlugins: [{
-                        resolve: `gatsby-remark-images`,
-                        options: {
-                            // It's important to specify the maxWidth (in pixels) of
-                            // the content container as this plugin uses this as the
-                            // base for generating different widths of each image.
-                            maxWidth: 590,
-                            disableBgImageOnAlpha: true
-                        },
+                    resolve: `gatsby-remark-images`,
+                    options: {
+                        // It's important to specify the maxWidth (in pixels) of
+                        // the content container as this plugin uses this as the
+                        // base for generating different widths of each image.
+                        maxWidth: 590,
+                        disableBgImageOnAlpha: true
                     },
-                    {
-                        resolve: `gatsby-remark-autolink-headers`,
-                        options: {
-                            maintainCase: true,
-                            removeAccents: true,
-                            isIconAfterHeader: true,
-                        },
+                },
+                {
+                    resolve: `gatsby-remark-autolink-headers`,
+                    options: {
+                        maintainCase: true,
+                        removeAccents: true,
+                        isIconAfterHeader: true,
                     },
+                },
                     `gatsby-remark-external-links`,
                     'gatsby-remark-copy-linked-files',
-                    {
-                        resolve: `gatsby-remark-prismjs`,
-                        options: {
-                            // This is used to allow setting a language for inline code
-                            // (i.e. single backticks) by creating a separator.
-                            // This separator is a string and will do no white-space
-                            // stripping.
-                            inlineCodeMarker: `~`,
-                            // Customize the prompt used in shell output
-                            // Values below are default
-                        },
+                {
+                    resolve: `gatsby-remark-double-brackets-link`,
+                    options: {
+                        titleToURLPath: `${__dirname}/src/resolve-url.js`,
+                        stripBrackets: true
                     },
+                },
+                {
+                    resolve: `gatsby-remark-prismjs`,
+                    options: {
+                        // This is used to allow setting a language for inline code
+                        // (i.e. single backticks) by creating a separator.
+                        // This separator is a string and will do no white-space
+                        // stripping.
+                        inlineCodeMarker: `~`,
+                        // Customize the prompt used in shell output
+                        // Values below are default
+                    },
+                },
                 ],
             },
         },

@@ -17,4 +17,4 @@ Almost all of us have experienced an old, forgotten memory being triggered by a 
 
 Stronger or more frequently recalled memories can act as entry points into this graph, as they are easier to recall.
 
-Mnemonics can act as a sort of memory scaffold.
+[[Mnemonics]] can act as a sort of memory scaffold.
