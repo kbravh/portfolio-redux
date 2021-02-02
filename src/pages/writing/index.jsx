@@ -111,8 +111,8 @@ export default ({ data }) => {
           {articles.map(node => (
             <motion.div
               key={node.id}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              initial={{ opacity: 0, height: "0", y: 50 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ ease: "easeInOut" }}
             >
