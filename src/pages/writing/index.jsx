@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import { commaSeparatedList } from '../../util'
 import Icon from '../../components/icon'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 
 import '../../css/writing.css'
 
@@ -66,20 +66,28 @@ export default ({ data }) => {
 
       {/* spread the Set of tags into an array and create buttons */}
       <div className="writing-tags">
-        {[...tags].map(tag => (
-          <button
-            key={tag}
-            className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`}
-            onClick={() => {
-              // create a new Set and update the state when a tag is clicked
-              let newTags = new Set([...selectedTags])
-              selectedTags.has(tag) ? newTags.delete(tag) : newTags.add(tag)
-              setSelectedTags(newTags)
-            }}
-          >
-            {tag}
-          </button>
-        ))}
+        <AnimateSharedLayout>
+          <AnimatePresence>
+            {[...tags].map(tag => (
+              <motion.button layout
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{duration: 0.5}}
+                key={tag}
+                className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`}
+                onClick={() => {
+                  // create a new Set and update the state when a tag is clicked
+                  let newTags = new Set([...selectedTags])
+                  selectedTags.has(tag) ? newTags.delete(tag) : newTags.add(tag)
+                  setSelectedTags(newTags)
+                }}
+              >
+                {tag}
+              </motion.button>
+            ))}
+          </AnimatePresence>
+        </AnimateSharedLayout>
       </div>
 
       {/* Update the search term when anything is typed */}
@@ -103,10 +111,10 @@ export default ({ data }) => {
           {articles.map(node => (
             <motion.div
               key={node.id}
-              initial={{opacity: 0, height: 0}}
-              animate={{opacity: 1, height: "auto"}}
-              exit={{opacity: 0, height: 0}}
-              transition={{ ease: "easeInOut"}}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ ease: "easeInOut" }}
             >
               <Link
                 to={node.gatsbyPath}
