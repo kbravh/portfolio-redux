@@ -1,0 +1,70 @@
+.featured {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featuredArticles,
+.featuredProjects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.featured-writing-cards,
+.featured-project-cards {
+  padding-bottom: 50px;
+}
+
+.featured-writing-card,
+.featured-project-card {
+  max-width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+  transition: all ease-in-out 0.2s;
+}
+
+.featured-writing-card:hover,
+.featured-project-card:hover {
+  background-color: var(--brand-fg);
+}
+
+.featured-writing-card:hover *,
+.featured-project-card:hover * {
+  color: var(--brand-bg);
+}
+
+.featured-writing-card *,
+.featured-project-card * {
+  color: var(--brand-fg);
+  margin: 0;
+  transition: all ease-in-out 0.2s;
+}
+
+.featured-writing-card-title,
+.featured-project-card-title {
+  font-family: "Odibee Sans";
+  letter-spacing: 2px;
+  font-size: 20px;
+  max-width: 80%;
+}
+
+.featured-project-card-logo img {
+  height: 25px;
+  margin-right: 10px;
+}
+
+@media screen and (min-width: 800px) {
+  .featured {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}

@@ -6,6 +6,7 @@ logo: tweet-to-markdown
 link:
 github: https://github.com/kbravh/tweet-to-markdown
 language: en_US
+featured: true
 tags:
   - Node.js
 ---

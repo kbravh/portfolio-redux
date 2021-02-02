@@ -2,11 +2,14 @@ import React from "react"
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 import Icon from '../components/icon'
-
 import useWindowSize from '../hooks/useWindowSize'
+
+import '../css/home.css'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
+  const articles = data.allBlogPost.nodes
+  const projects = data.allProject.nodes
 
   const { width } = useWindowSize()
 
@@ -24,11 +27,30 @@ export default ({ data }) => {
         <meta name="twitter:author" content="@kbravh" />
       </Helmet>
       <h1>Karey Higuera</h1>
-      <h2 style={{marginTop: 0}}>Full-stack developer</h2>
+      <h2 style={{ marginTop: 0 }}>Full-stack developer</h2>
       <p>I'm a self-taught, full-stack developer passionate about modern web technologies. I work with JavaScript and React on the front-end and Node.js in cloud services on the backend. I enjoy utilizing serverless functionality to make the web a simpler, more maintainable space.</p>
+
+      <div className="featured">
+        <div className="featuredArticles">
+          <h4>Featured articles</h4>
+          <div className="writingCards">
+            {articles.map(article => (
+              <WritingCard article={article} />
+            ))}
+          </div>
+        </div>
+        <div className="featuredProjects">
+          <h4>Featured projects</h4>
+          <div className="projectCards">
+            {projects.map(project => (
+              <ProjectCard project={project} />
+            ))}
+          </div>
+        </div>
+      </div>
       {width < 600 &&
         <>
-          <p style={{textAlign: "center"}}>Find me around the web!</p>
+          <p style={{ textAlign: "center" }}>Find me around the web!</p>
           <div className="social-links">
             <a href="https://github.com/kbravh" alt="GitHub"><Icon icon="github" /></a>
             <a href="https://www.linkedin.com/in/kbravh/" alt="LinkedIn"><Icon icon="linkedin" /></a>
@@ -41,11 +63,45 @@ export default ({ data }) => {
   )
 }
 
+const WritingCard = ({ article }) => (
+  <article className="featured-writing-card">
+    <div className="featured-writing-card-title">{article.frontmatter.title}</div>
+    <Icon icon="arrow-right" />
+  </article>
+)
+
+const ProjectCard = ({ project }) => (
+  <article className="featured-project-card">
+    <div className="featured-project-card-logo">
+      <img src={`logos/${project.frontmatter.logo}.png`} alt={`${project.frontmatter.title} logo`} />
+    </div>
+    <div className="featured-project-card-title">{project.frontmatter.title}</div>
+    <Icon icon="arrow-right" />
+  </article>
+)
+
 export const query = graphql`
   query {
     site {
       siteMetadata {
         siteUrl
+      }
+    }
+    allBlogPost(filter: {frontmatter: {featured: {eq: true}}}) {
+      nodes {
+        gatsbyPath(filePath: "/writing/{BlogPost.name}")
+        frontmatter {
+          title
+        }
+      }
+    }
+    allProject(filter: {frontmatter: {featured: {eq: true}}}) {
+      nodes {
+        gatsbyPath(filePath: "/projects/{Project.name}")
+        frontmatter {
+          title
+          logo
+        }
       }
     }
   }

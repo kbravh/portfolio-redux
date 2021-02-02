@@ -6,6 +6,7 @@ logo: multi-class
 link:
 github: https://github.com/kbravh/multi-class
 language: en_US
+featured: true
 tags:
   - Node.js
 ---

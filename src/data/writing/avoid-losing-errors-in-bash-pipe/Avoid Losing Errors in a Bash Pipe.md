@@ -5,6 +5,7 @@ date: 2020-10-04
 slug: avoid-losing-errors-in-bash-pipe
 language: en_US
 stage: 3
+featured: true
 tags:
   - Bash
 ---

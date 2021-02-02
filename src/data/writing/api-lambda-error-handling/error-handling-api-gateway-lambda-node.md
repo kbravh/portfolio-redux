@@ -5,6 +5,7 @@ date: 2020-02-10
 slug: error-handling-api-gateway-lambda-node
 language: en_US
 stage: 3
+featured: true
 tags:
   - AWS
   - Lambda
