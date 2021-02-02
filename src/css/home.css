@@ -27,6 +27,7 @@
   align-items: center;
   border-radius: 5px;
   padding: 5px;
+  margin-bottom: 5px;
   transition: all ease-in-out 0.2s;
 }
 
@@ -56,8 +57,13 @@
 }
 
 .featured-project-card-logo img {
-  height: 25px;
+  height: 30px;
   margin-right: 10px;
+}
+
+.featured-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media screen and (min-width: 800px) {

@@ -1,6 +1,6 @@
 import React from "react"
 import { Helmet } from 'react-helmet'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Icon from '../components/icon'
 import useWindowSize from '../hooks/useWindowSize'
 
@@ -35,7 +35,14 @@ export default ({ data }) => {
           <h4>Featured articles</h4>
           <div className="writingCards">
             {articles.map(article => (
-              <WritingCard article={article} />
+              <Link
+                to={article.gatsbyPath}
+                className="featured-link"
+                key={article.id}
+                aria-label={article.frontmatter.title}
+              >
+                <WritingCard article={article} />
+              </Link>
             ))}
           </div>
         </div>
@@ -43,7 +50,14 @@ export default ({ data }) => {
           <h4>Featured projects</h4>
           <div className="projectCards">
             {projects.map(project => (
-              <ProjectCard project={project} />
+              <Link
+                to={project.gatsbyPath}
+                className="featured-link"
+                key={project.id}
+                aria-label={project.frontmatter.title}
+              >
+                <ProjectCard project={project} />
+              </Link>
             ))}
           </div>
         </div>
