@@ -1,8 +1,9 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import { commaSeparatedList } from '../../util'
 import Icon from '../../components/icon'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import '../../css/writing.css'
 
@@ -13,14 +14,14 @@ export default ({ data }) => {
   const [selectedTags, setSelectedTags] = useState(new Set())
   const [onlyCoding, setOnlyCoding] = useState(false)
   let tags = new Set(nodes
-      .filter(article => onlyCoding ? !article.frontmatter.noncoding : true)
-      .flatMap(article => article.frontmatter.tags))
+    .filter(article => onlyCoding ? !article.frontmatter.noncoding : true)
+    .flatMap(article => article.frontmatter.tags))
   const [searchTerm, setSearchTerm] = useState("")
 
   // Filter the articles based on those that have at least one of the selected tags
   let articles = selectedTags.size === 0 ? nodes : nodes.filter(node => {
     for (const tag of node.frontmatter.tags) {
-      if (selectedTags.has(tag)){
+      if (selectedTags.has(tag)) {
         return true
       }
     }
@@ -84,7 +85,7 @@ export default ({ data }) => {
       {/* Update the search term when anything is typed */}
       <div className="writing-search">
         <Icon icon="search" />
-        <label htmlFor="search" style={{width: '100%'}}>
+        <label htmlFor="search" style={{ width: '100%' }}>
           <input
             type="search"
             name="search"
@@ -98,17 +99,27 @@ export default ({ data }) => {
 
       {/* Map over the filtered articles list and build article cards*/}
       <section className="writing-cards">
-        {articles.map(node => (
-          <Link
-            to={node.gatsbyPath}
-            className="writing-link"
-            key={node.id}
-            aria-label={node.frontmatter.title}
-          >
-            <WritingCard post={node} />
-          </Link>
-        ))}
-        {/* If nothing matches our filters, show a small message */}
+        <AnimatePresence>
+          {articles.map(node => (
+            <motion.div
+              key={node.id}
+              initial={{opacity: 0, height: 0}}
+              animate={{opacity: 1, height: "auto"}}
+              exit={{opacity: 0, height: 0}}
+              transition={{ ease: "easeInOut"}}
+            >
+              <Link
+                to={node.gatsbyPath}
+                className="writing-link"
+                key={node.id}
+                aria-label={node.frontmatter.title}
+              >
+                <WritingCard post={node} />
+              </Link>
+            </motion.div>
+          ))}
+          {/* If nothing matches our filters, show a small message */}
+        </AnimatePresence>
         {articles.length === 0 && "Oops, nothing seems to match!"}
       </section>
     </>
@@ -131,18 +142,18 @@ const WritingCard = ({ post }) => {
   })()
   return (
     <article className="writing-card">
-        <div style={{display: "flex", alignContent: "center"}}>
-          <div className="writing-stage">
-            {stageIcon}
-          </div>
-          <div className="writing-card-info">
-            <div className="writing-card-title">{post.frontmatter.title}</div>
-            <div className="writing-card-tags">
-              {commaSeparatedList(post.frontmatter.tags)}
-            </div>
+      <div style={{ display: "flex", alignContent: "center" }}>
+        <div className="writing-stage">
+          {stageIcon}
+        </div>
+        <div className="writing-card-info">
+          <div className="writing-card-title">{post.frontmatter.title}</div>
+          <div className="writing-card-tags">
+            {commaSeparatedList(post.frontmatter.tags)}
           </div>
         </div>
-        <Icon icon="arrow-right" />
+      </div>
+      <Icon icon="arrow-right" />
     </article>
   )
 }

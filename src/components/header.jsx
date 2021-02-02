@@ -46,7 +46,7 @@ const Header = () => {
   let { width } = useWindowSize()
   const [isMenuOpen, setMenuOpen] = useState(false)
 
-  // we're using this to avoid issues with rehydration 
+  // we're using this to avoid issues with rehydration
   // (see https://joshwcomeau.com/react/the-perils-of-rehydration/)
   const hasMounted = useHasMounted()
 
