@@ -56,6 +56,7 @@ const Header = () => {
     return (
       <>
         <motion.nav className="mobile-menu"
+          initial="closed"
           animate={isMenuOpen ? "open" : "closed"}
           variants={menuAnimations}
         >
