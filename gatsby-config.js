@@ -83,7 +83,7 @@ module.exports = {
             resolve: `gatsby-plugin-web-font-loader`,
             options: {
                 google: {
-                    families: ['Odibee Sans', 'Andika', 'Dosis']
+                    families: ['Odibee Sans', 'Dosis']
                 }
             }
         },
