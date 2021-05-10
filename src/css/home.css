@@ -27,6 +27,7 @@
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 5px;
+  border: 1px solid rgba(52,61,68,0.05);
   transition: all ease-in-out 0.2s;
 }
 
