@@ -8,7 +8,6 @@ stage: 3
 featured: true
 tags:
   - AWS
-  - Lambda
   - Node.js
 ---
 

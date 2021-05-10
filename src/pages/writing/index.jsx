@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet'
-import { commaSeparatedList } from '../../util'
+import WritingCard from '../../components/writing-card'
 import Icon from '../../components/icon'
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 
@@ -73,7 +73,7 @@ export default ({ data }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, x: -50 }}
-                transition={{duration: 0.5}}
+                transition={{ duration: 0.5 }}
                 key={tag}
                 className={`writing-tag ${selectedTags.has(tag) ? "selected" : ""}`}
                 onClick={() => {
@@ -131,38 +131,6 @@ export default ({ data }) => {
         {articles.length === 0 && "Oops, nothing seems to match!"}
       </section>
     </>
-  )
-}
-
-const WritingCard = ({ post }) => {
-  let stageIcon = (() => {
-    let stage = post.frontmatter.stage
-    switch (stage) {
-      case 1:
-        return "🌱"
-      case 2:
-        return "🌿"
-      case 3:
-        return "🌲"
-      default:
-        return "🌱"
-    }
-  })()
-  return (
-    <article className="writing-card">
-      <div style={{ display: "flex", alignContent: "center" }}>
-        <div className="writing-stage">
-          {stageIcon}
-        </div>
-        <div className="writing-card-info">
-          <div className="writing-card-title">{post.frontmatter.title}</div>
-          <div className="writing-card-tags">
-            {commaSeparatedList(post.frontmatter.tags)}
-          </div>
-        </div>
-      </div>
-      <Icon icon="arrow-right" />
-    </article>
   )
 }
 

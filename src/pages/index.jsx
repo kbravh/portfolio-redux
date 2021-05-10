@@ -1,6 +1,7 @@
 import React from "react"
 import { Helmet } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
+import WritingCard from '../components/writing-card'
 import Icon from '../components/icon'
 import useWindowSize from '../hooks/useWindowSize'
 
@@ -28,7 +29,7 @@ export default ({ data }) => {
       </Helmet>
       <h1>Karey Higuera</h1>
       <h2 style={{ marginTop: 0 }}>Full-stack developer</h2>
-      <p>I'm a self-taught, full-stack developer passionate about modern web technologies. I work with JavaScript and React on the front-end and Node.js in cloud services on the backend. I enjoy utilizing serverless functionality to make the web a simpler, more maintainable space.</p>
+      <p>I'm a self-taught, full-stack developer passionate about modern web technologies. I work with JavaScript and React on the front-end and Node.js in cloud services on the back-end. I enjoy utilizing serverless functionality to make the web a simpler, more maintainable space.</p>
 
       <div className="featured">
         <div className="featuredArticles">
@@ -41,7 +42,7 @@ export default ({ data }) => {
                 key={article.id}
                 aria-label={article.frontmatter.title}
               >
-                <WritingCard article={article} />
+                <WritingCard post={article} />
               </Link>
             ))}
           </div>
@@ -77,13 +78,6 @@ export default ({ data }) => {
   )
 }
 
-const WritingCard = ({ article }) => (
-  <article className="featured-writing-card">
-    <div className="featured-writing-card-title">{article.frontmatter.title}</div>
-    <Icon icon="arrow-right" />
-  </article>
-)
-
 const ProjectCard = ({ project }) => (
   <article className="featured-project-card">
     <div className="featured-project-card-logo">
@@ -106,6 +100,9 @@ export const query = graphql`
         gatsbyPath(filePath: "/writing/{BlogPost.name}")
         frontmatter {
           title
+          tags
+          date(formatString: "DD MMMM, YYYY")
+          stage
         }
       }
     }

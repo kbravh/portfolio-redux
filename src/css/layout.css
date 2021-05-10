@@ -161,15 +161,16 @@ p {
 
 h1, h2, h3, h4, h5 {
   margin: 2.75rem 0 1.05rem;
-  font-family: 'Dosis', sans-serif;
-  font-weight: 700;
+  font-family: 'Molengo', sans-serif;
+  font-weight: 400;
   line-height: 1.15;
 }
 
 h1 {
   margin-top: 0;
-  font-size: 1.802em;
-  font-weight: 400;
+  font-family: "Fira Sans";
+  font-weight: 700;
+  font-size: 3em;
 }
 
 h2 {
