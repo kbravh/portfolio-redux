@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  height: 45px;
   /* Change the visual order of the menu button so tab order makes sense
   <menu button>
   --- The <li>s will be hidden when the menu closes and removed from the tab order
