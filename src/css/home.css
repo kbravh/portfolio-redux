@@ -20,7 +20,6 @@
 
 .featured-writing-card,
 .featured-project-card {
-  max-width: 300px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -71,7 +70,7 @@
   color: inherit;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
   .featured {
     flex-direction: row;
     flex-wrap: wrap;
