@@ -84,6 +84,7 @@
 .writing-card-date {
   opacity: .5;
   font-size: .8em;
+  text-align: right;
 }
 
 .featured-project-card-logo img {
@@ -98,9 +99,9 @@
 
 @media screen and (min-width: 1000px) {
   .featured {
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
     align-items: flex-start;
-    justify-content: space-between;
   }
 }
