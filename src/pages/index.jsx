@@ -95,7 +95,8 @@ export const query = graphql`
         siteUrl
       }
     }
-    allBlogPost(filter: {frontmatter: {featured: {eq: true}}}) {
+    allBlogPost(filter: {frontmatter: {featured: {eq: true}}},
+                sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         gatsbyPath(filePath: "/writing/{BlogPost.name}")
         frontmatter {
