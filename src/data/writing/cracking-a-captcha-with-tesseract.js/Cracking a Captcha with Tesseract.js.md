@@ -24,7 +24,7 @@ The letters aren't distorted and they're on a nice white background, so we shoul
 
 ![Tesseract.js reads our captcha incorrectly](tesseract.png)
 
-Instead of reading `js~FCWVw`, Tesseract produced `js~ECYA w-`; this is definitely not what we're looking for. We're going to have to clean up this image so that it doesn't confuse Tesseract.
+Instead of reading `FCWVw`, Tesseract produced `ECYA w-`; this is definitely not what we're looking for. We're going to have to clean up this image so that it doesn't confuse Tesseract.
 
 ## Cleaning up the Captchas
 
@@ -71,15 +71,15 @@ for (let y = 0; y < height; y++) {  // rows
 }
 ```
 
-We first open our image as a file and pass it in to the PNG library, which gives us a `js~pngImage` object. This object holds all the information about our image, but we're only concerned with 3 parts: the `js~height`, the `js~width`, and the `js~data`.
+We first open our image as a file and pass it in to the PNG library, which gives us a `pngImage` object. This object holds all the information about our image, but we're only concerned with 3 parts: the `height`, the `width`, and the `data`.
 
-The `js~data` is a 1-dimensional array of all the color information that makes up our image. Each pixel is represented by 4 values from 0-255: Red, Green, Blue, and Alpha (the transparency). So for each round of the loop, we need to multiply our index by 4 to jump to the next pixel.
+The `data` is a 1-dimensional array of all the color information that makes up our image. Each pixel is represented by 4 values from 0-255: Red, Green, Blue, and Alpha (the transparency). So for each round of the loop, we need to multiply our index by 4 to jump to the next pixel.
 
 For example, let's look at a 2x2 (4 pixel) image.
 
 ![A 2x2 square made up of 4 different colors](4pixels.png)
 
-The `js~data` array for this image would be
+The `data` array for this image would be
 
 ```js
 /* R     G     B     A */
@@ -91,15 +91,21 @@ The `js~data` array for this image would be
 ]
 ```
 
-Now that we have our data, we can loop through each pixel and grab the RGB values (we don't need the alpha value). We'll store the RGB value as a string like `js~R-G-B` to use it as a key in our `js~colorOccurrences` object, then keep a count of how may pixels of each color occur. We'll just ignore the white pixels since it's the background color.
+Now that we have our data, we can loop through each pixel and grab the RGB values (we don't need the alpha value). We'll store the RGB value as a string like `R-G-B` to use it as a key in our `colorOccurrences` object, then keep a count of how may pixels of each color occur. We'll just ignore the white pixels since it's the background color.
 
 Finally, we can find our color that appeared most frequently. This will correspond to the color of our characters.
 
 ```js
-// grab all of the colors that we saw [R-G-B, # of occurrences]
+// grab all of the colors in the pattern [R-G-B, # of occurrences]
 let colors = Object.entries(colorOccurrences)
 // find the color that occurred most
-let highestColor = colors.reduce((highColor, currentColor) => highColor[1] > currentColor[1] ? highColor : currentColor)
+let highestColor = colors.reduce((highColor, currentColor) => {
+  if(highColor[1] > currentColor[1]) {
+    return highColor
+  } else {
+    return currentColor
+  }
+})
 // grab just the R-G-B as an array, we don't need the number of occurrences
 let highestColorRGB = highestColor[0].split('-')
 ```
@@ -143,7 +149,7 @@ for (let y = 0; y < height; y++) {      // rows
 
 We set up a loop again, row by row and column by column, and grab the RGB values of the current pixel. We'll ignore any white pixel because we want to leave the background alone. Then, we check to see if the current pixel's color matches the color of the characters.
 
-We have to leave a little leeway for each color check; sometimes there's a discrepancy of 1-3 points on each color channel between adjacent pixels, especially around the edges of the characters. So the main color might be `js~10-30-59`, but one of the pixels on the character might be `js~11-29-57`. We'll let these close pixels slide by unscathed. If we see that any color channel is more than 3 points off, we'll paint the pixel to get rid of the line. But what color do we paint the pixel?
+We have to leave a little leeway for each color check; sometimes there's a discrepancy of 1-3 points on each color channel between adjacent pixels, especially around the edges of the characters. So the main color might be `10-30-59`, but one of the pixels on the character might be `11-29-57`. We'll let these close pixels slide by unscathed. If we see that any color channel is more than 3 points off, we'll paint the pixel to get rid of the line. But what color do we paint the pixel?
 
 The first option that comes to mind is to just erase the lines by painting each pixel white like the background.
 
@@ -163,7 +169,7 @@ Not too bad! Let's see what happens when we pass this to Tesseract.
 
 ![Tesseract does a very poor reading of our captcha.](tesseract-white.png)
 
-Uh oh. 😕 This time, Tesseract read `js~VAN FCW\Vw`. While the captcha looks a lot cleaner to us, we've actually created a lot of new edges which confuses Tesseract. Let's take a different approach.
+Uh oh. 😕 This time, Tesseract read `VAN FCW\Vw`. While the captcha looks a lot cleaner to us, we've actually created a lot of new edges which confuses Tesseract. Let's take a different approach.
 
 Instead of painting the pixels white and leaving holes in our characters, we can try to fill in the gaps instead. The simplest thing we can do is just paint our current pixel the same color as the one above it.
 

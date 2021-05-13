@@ -63,6 +63,10 @@ pre[class*="language-"] {
   white-space: normal;
 }
 
+.token {
+  color: #d6deeb;
+}
+
 .token.comment,
 .token.prolog,
 .token.cdata {
