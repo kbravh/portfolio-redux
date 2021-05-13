@@ -14,13 +14,13 @@ I wanted to automate some tasks on a site that I frequently use, but every now a
 
 ## The Problem with Captchas and OCR
 
-The captcha images on the site consist of a string of five characters with various colored lines drawn through.
+The captcha images on the site consist of a string of five characters with various colored lines drawn through. For example, look at these three captchas.
 
 ![A captcha of five characters with lines drawn through them.](captcha1.png)
 ![Another captcha of five characters with lines drawn through them.](captcha2.png)
 ![A third captcha of five characters with lines drawn through them.](captcha3.png)
 
-The letters aren't distorted and they're on a nice white background, so we shouldn't have any problem dropping them straight into an OCR program, right? Well, not quite. The problem is that these little lines are *very* effective at thwarting OCR engines because the majority of those programs rely on edge detection to identify each letter. Let's visit the [Tesseract.js site](https://tesseract.projectnaptha.com/) and try our captcha on their demo.
+The letters aren't distorted and they're on a nice white background, so we shouldn't have any problem dropping them straight into an OCR program, right? Well, not quite. The problem is that these little lines are *very* effective at thwarting OCR engines because the majority of those programs rely on edge detection to identify each letter. [Tesseract.js](https://tesseract.projectnaptha.com/) is one of the most popular OCR libraries for JavaScript. Let's visit their site and try our captcha on their demo.
 
 ![Tesseract.js reads our captcha incorrectly](tesseract.png)
 
@@ -30,7 +30,7 @@ Instead of reading `js~FCWVw`, Tesseract produced `js~ECYA w-`; this is definite
 
 We need to get rid of these lines if we want Tesseract.js to stand a fair chance at reading our image. Thankfully, there's an interesting attribute of these captchas that will help us: all of the characters are a solid color, and each line is a different color. These colors change every time a new captcha is produced.
 
-So, if we break our png down pixel by pixel and count how many of each color pixel appears, we can find
+So, if we break our png down pixel by pixel and count how many of each color pixel appears, we can find:
 
 1. Which color appears most often (the white background)
 2. Which color appears second most often (our characters)
@@ -47,11 +47,10 @@ const PNG = require('pngjs').PNG
 // open image
 const captcha = fs.readFileSync(path)
 const pngImage = PNG.sync.read(captcha)
+let {data, height, width} = pngImage
 
 // create a dictionary to keep track of our pixel counts
 let colorOccurrences = {}
-
-let {data, height, width} = pngImage
 
 for (let y = 0; y < height; y++) {  // rows
   for (let x = 0; x < width; x++) { // columns
@@ -204,11 +203,10 @@ const PNG = require('pngjs').PNG
 // open image
 const captcha = fs.readFileSync(path)
 const pngImage = PNG.sync.read(captcha)
+let {data, height, width} = pngImage
 
 // create a dictionary to keep track of our pixel counts
 let colorOccurrences = {}
-
-let {data, height, width} = pngImage
 
 for (let y = 0; y < height; y++) {  // rows
   for (let x = 0; x < width; x++) { // columns
