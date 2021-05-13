@@ -4,7 +4,7 @@ description: A look into the most basic algorithm for generating poisson disk di
 date: 2021-05-04
 language: en_US
 stage: 3
-featured: true
+featured: false
 tags:
   - Algorithms
 ---

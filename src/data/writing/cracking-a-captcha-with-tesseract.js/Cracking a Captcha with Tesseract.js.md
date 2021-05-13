@@ -79,7 +79,7 @@ For example, let's look at a 2x2 (4 pixel) image.
 
 ![A 2x2 square made up of 4 different colors](4pixels.png)
 
-The `data` array for this image would be
+The `data` array for this image would be:
 
 ```js
 /* R     G     B     A */
@@ -195,6 +195,22 @@ We still get some odd drips and artifacts, but this looks a lot better! Let's se
 ![Tesseract perfectly decodes our captcha](tesseract-fill.png)
 
 A perfect success! By eliminating extra edges and solidifying our characters, we've cleaned up the captcha enough to give Tesseract a fighting chance.
+
+## Future Improvements
+
+I had a little over 800 of the captchas saved, so I decided to run both the white-line method and the full-character method against all of them to see the difference in their effectiveness.
+
+![A bar chart comparing the effectiveness of the white-line method versus the full-character method](comparison.png)
+
+The full-character method had a 69% success rate, compared to a 26% success rate for the white-line method. Based on the data I gathered from these tests, it's clear that Tesseract.js makes some common misreads:
+- `8` as `g`
+- `9` as `o`
+- `Q` as `O`
+- `J` as `]`
+- `J` as `1`
+- `q` as `g`
+
+As a future improvement, we could [provide our own training data](https://towardsdatascience.com/simple-ocr-with-tesseract-a4341e4564b6) to Tesseract.js based on the specific font used in these captchas! That would alleviate the confusion that occurs between these similar characters.
 
 ## Conclusion
 
