@@ -134,9 +134,9 @@ for (let y = 0; y < height; y++) {      // rows
    */
   // find how far each pixel color channel is from the color of the characters
     let [red, green, blue] = [
-      Math.abs(highestColorRGB[0] - colorRGB[0]),
-      Math.abs(highestColorRGB[1] - colorRGB[1]),
-      Math.abs(highestColorRGB[2] - colorRGB[2])
+      Math.abs(highestColorRGB[0] - RGB[0]),
+      Math.abs(highestColorRGB[1] - RGB[1]),
+      Math.abs(highestColorRGB[2] - RGB[2])
     ]
 
     // if any color channel is more than 3 points away
@@ -248,6 +248,19 @@ for (let y = 0; y < height; y++) {  // rows
   }
 }
 
+// grab all of the colors in the pattern [R-G-B, # of occurrences]
+let colors = Object.entries(colorOccurrences)
+// find the color that occurred most
+let highestColor = colors.reduce((highColor, currentColor) => {
+  if(highColor[1] > currentColor[1]) {
+    return highColor
+  } else {
+    return currentColor
+  }
+})
+// grab just the R-G-B as an array, we don't need the number of occurrences
+let highestColorRGB = highestColor[0].split('-')
+
 for (let y = 0; y < height; y++) {      // rows
   for (let x = 0; x < width; x++) {   // columns
     let index = (width * y + x) * 4;
@@ -265,9 +278,9 @@ for (let y = 0; y < height; y++) {      // rows
    */
   // find how far each pixel color channel is from the color of the characters
     let [red, green, blue] = [
-      Math.abs(highestColorRGB[0] - colorRGB[0]),
-      Math.abs(highestColorRGB[1] - colorRGB[1]),
-      Math.abs(highestColorRGB[2] - colorRGB[2])
+      Math.abs(highestColorRGB[0] - RGB[0]),
+      Math.abs(highestColorRGB[1] - RGB[1]),
+      Math.abs(highestColorRGB[2] - RGB[2])
     ]
 
     // if any color channel is more than 3 points away
@@ -288,5 +301,5 @@ for (let y = 0; y < height; y++) {      // rows
 
 // save new image
 const imageBuffer = PNG.sync.write(pngImage)
-fs.writeFileSync(`captcha-clean.png`, imageBuffer)
+fs.writeFileSync(`${path.replace('.png', '')}-clean.png`, imageBuffer)
 ```
