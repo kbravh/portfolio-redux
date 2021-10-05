@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://garden.kbravh.dev/*"
-  to = "https://publish.obsidian.md/serve?url=garden.kbravh.dev/:splat"
+  from = "https://kbrav.dev/garden/*"
+  to = "https://publish.obsidian.md/serve?url=kbravh.dev/garden/:splat"
   status = 200
   force = true
