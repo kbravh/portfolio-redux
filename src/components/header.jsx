@@ -7,8 +7,6 @@ import useHasMounted from '../hooks/useHasMounted'
 
 import '../css/header.css'
 
-import Resume from '../assets/Karey_Higuera_Resume.pdf'
-
 const menuAnimations = {
   open: { y: "-30%" },
   closed: { y: "-85%", transition: {delay: 0.2} }
@@ -70,7 +68,7 @@ const Header = () => {
             <motion.li variants={listItemAnimations}><Link to="/" onClick={() => setMenuOpen(false)}><Icon icon="home" />Home</Link></motion.li>
             <motion.li variants={listItemAnimations}><Link to='/projects' onClick={() => setMenuOpen(false)}><Icon icon="wrench" />Projects</Link></motion.li>
             <motion.li variants={listItemAnimations}><Link to="/writing" onClick={() => setMenuOpen(false)}><Icon icon="pen" />Writing</Link></motion.li>
-            <motion.li variants={listItemAnimations}><a download href={Resume} onClick={() => setMenuOpen(false)}><Icon icon="download" />Resume</a></motion.li>
+            <motion.li variants={listItemAnimations}><Link to="/about" onClick={() => setMenuOpen(false)}><Icon icon="person" />About</Link></motion.li>
           </motion.ul>
         </motion.nav>
       </>
@@ -82,9 +80,7 @@ const Header = () => {
           <Link to="/">Home</Link>
           <Link to='/projects'>Projects</Link>
           <Link to="/writing">Writing</Link>
-          <span>
-            <a className="resume-link" download href={Resume}>Resume</a>
-          </span>
+          <Link to="/about">About</Link>
         </div>
       </nav>
     )
