@@ -1,6 +1,8 @@
 import React from "react"
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { Helmet } from "react-helmet"
+
+import Resume from '../assets/Karey_Higuera_Resume.pdf'
 
 export default ({ data }) => {
   const site = data.site.siteMetadata
@@ -22,7 +24,11 @@ export default ({ data }) => {
         <meta name="twitter:site" content="" />
         <meta name="twitter:author" content="@kbravh" />
       </Helmet>
-      <h1>About</h1>
+      <h1>About Me</h1>
+      <p>I'm a full-stack developer based out of northern Louisiana. I'm currently employed at <a href="https://pillar.hr">Pillar</a>, an interview intelligence platform. In the past 10 years I've lived here, Baltimore, Maryland, and in the northern provinces of Argentina. I'm fluent in English and Spanish.</p>
+      <p>I don't have a lot of free time with our baby (less than a year old!), but I do enjoy reading and my new hobby, stamp collecting. Feel free to check out my <Link to='/reading-list'>reading list for 2022</Link>!</p>
+
+      <p>Grab a copy of my <a href={Resume} download>resume</a>.</p>
     </>
   )
 }

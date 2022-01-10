@@ -23,14 +23,21 @@ export const readingListRaw = [
   {
     title: 'The Three-Body Problem',
     author: 'Cixin Liu',
-    description: 'I knocked the series out in 2020, and I *still* think about the story about once a week. I want to give it another read-through and enjoy it again.',
+    comment: 'I knocked the series out in 2020, and I *still* think about the story about once a week. I want to give it another read-through and enjoy it again.',
     cover: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1415428227l/20518872.jpg',
     url: 'https://www.goodreads.com/book/show/20518872-the-three-body-problem'
+  },
+  {
+    title: 'Journey to the Center of the Earth',
+    author: 'Jules Verne',
+    comment: "I've had this classic on my shelf for a while and I'm excited to knock it out!",
+    cover: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1389754903l/32829.jpg',
+    url: 'https://www.goodreads.com/book/show/32829.Journey_to_the_Center_of_the_Earth'
   },
   // {
   //   title: '',
   //   author: '',
-  //   description: '',
+  //   comment: '',
   //   cover: '',
   //   url: ''
   // },
