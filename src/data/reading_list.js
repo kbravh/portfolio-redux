@@ -1,12 +1,5 @@
 export const readingListRaw = [
   {
-    title: 'Journey to the Center of the Earth',
-    author: 'Jules Verne',
-    comment: "I've had this classic on my shelf for a while and I'm excited to knock it out!",
-    cover: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1389754903l/32829.jpg',
-    url: 'https://www.goodreads.com/book/show/32829.Journey_to_the_Center_of_the_Earth'
-  },
-  {
     title: 'The Address Book',
     author: ' Deirdre Mask',
     comment: 'A dive into the importance and history of personal home addresses. I saw this mentioned on the PostCrossing blog.',
@@ -48,4 +41,15 @@ export const readingListRaw = [
   //   cover: '',
   //   url: ''
   // },
+]
+
+export const readingListCompleteRaw = [
+  {
+    title: 'Journey to the Centre of the Earth',
+    author: 'Jules Verne',
+    comment: '',
+    cover: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1389754903l/32829.jpg',
+    url: 'https://www.goodreads.com/book/show/32829.Journey_to_the_Center_of_the_Earth',
+    date: 'Jan 13, 2022'
+  },
 ]
