@@ -145,7 +145,6 @@ export const query = graphql`
           date(formatString: "DD MMMM, YYYY")
           tags
           stage
-          noncoding
         }
       }
     }
