@@ -51,8 +51,15 @@ However, if we concede to not being able to immediately scan the QR code when se
 ⠧⠭⠭⠥⠧⠼⠽⠮⠤⠵⠽⠇
 ```
 
+## Caveats
+Now, in a perfect world, we'd get to use that 8-times compression to its fullest extent. Unfortunately, Braille characters count as 2 characters in Twitter's character count. New lines also each count as a character.
+
+How big of a Braille QR code can we fit then with these limitations? With some quick back of the napkin math, our upper limit can be expressed by $2(x^2) + x = 280$, which  comes out to a little over 11. This means that at most, we can tweet an 11x11 Braille grid, giving us a maximum size of a 22x22 QR code. This is better than the emojis, but still rather limited in terms of data density.
+
+For a more in-depth dive into encoding lots of data into a tweet, check out the work done by [qntm](https://qntm.org/twitcodings) and the library [base2048](https://github.com/qntm/base2048).
+
 ## Converting a QR code to Braille characters
-First, we can take a look at how Braille characters are handled in unicode.
+To get started, let's take a look at how Braille characters are handled in unicode.
 
 ![The Braille character layout](braille.png)
 

@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import {commaSeparatedList} from '../../util'
+import { commaSeparatedList } from '../../util'
 import Icon from '../../components/icon'
 
 import '../../css/writing-post.css'
