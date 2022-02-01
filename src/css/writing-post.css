@@ -84,7 +84,7 @@ code::selection {
   color: var(--brand-fg);
 }
 
-.katex-mathml {
+.katex-html {
   display: none;
 }
 
